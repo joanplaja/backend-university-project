@@ -35,3 +35,4 @@ java -Dswarm.project.minio.ulr=http://your-minio-host.com -Dswarm.project.minio.
 
 The app is ready to deploy into [Heroku](http://heroku.com) with the ```web``` profile. There is a file ```Procfile``` with the command line arguments to start the jar.
 #### Collaborations are welcome!
+canvi pau
