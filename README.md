@@ -1,4 +1,5 @@
 # TODOjavaee
+Prova Joan
 
 This is a Spring Boot application that implements an pure API REST for a TODO appication. It is used for educational purposes and the goal is to show good practices when building multi-tier applications with JavaEE (and in general). It works with the the [TODOandroid](https://github.com/neich/TODOAndroid) Android application as client.
 
@@ -35,4 +36,3 @@ java -Dswarm.project.minio.ulr=http://your-minio-host.com -Dswarm.project.minio.
 
 The app is ready to deploy into [Heroku](http://heroku.com) with the ```web``` profile. There is a file ```Procfile``` with the command line arguments to start the jar.
 #### Collaborations are welcome!
-canvi pau
