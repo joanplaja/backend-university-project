@@ -16,6 +16,7 @@ import org.udg.pds.springtodo.repository.UserRepository;
 import org.udg.pds.springtodo.service.TagService;
 import org.udg.pds.springtodo.service.TaskService;
 import org.udg.pds.springtodo.service.UserService;
+import org.udg.pds.springtodo.service.WorkoutService;
 
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
@@ -37,6 +38,10 @@ public class Global {
     @Autowired
     private
     TaskService taskService;
+
+    @Autowired
+    private
+    WorkoutService workoutService;
 
     @Autowired
     private
@@ -102,9 +107,12 @@ public class Global {
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            userService.register("user", "user@hotmail.com", "0000");
+            User user2 = userService.register("user", "user@hotmail.com", "0000");
+            workoutService.addWorkout("running", user.getId(), new Date());
+            workoutService.addWorkout("cycling", user.getId(), new Date());
+            workoutService.addWorkout("hiking", user2.getId(), new Date());
+            workoutService.addWorkout("walking", user2.getId(), new Date());
         }
-
     }
 
     public MinioClient getMinioClient() {
