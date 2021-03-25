@@ -26,8 +26,8 @@ public class WorkoutService {
         return workoutRepository;
     }
 
-    public Collection<Workout> getWorkouts(Long id) {
-        return userService.getUser(id).getWorkouts();
+    public Collection<Workout> getWorkouts(Long userId) {
+        return userService.getUser(userId).getWorkouts();
     }
 
     public Workout getWorkout(Long userId, Long id) {
