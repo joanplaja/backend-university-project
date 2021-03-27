@@ -12,6 +12,8 @@ import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;
 
+import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,4 +79,53 @@ public class UserService {
             t.getTags();
         return u;
     }
+
+    @Transactional
+    public void addFollowing(Long userId, Long followingId) {
+        try {
+            User user = this.getUser(userId);
+
+            User following = this.getUser(followingId);
+
+            user.Follow(following);
+
+            following.addFollower(user);
+
+            userRepository.save(user);
+            userRepository.save(following);
+        } catch (Exception ex) {
+            // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
+            // We catch the normal exception and then transform it in a ServiceException
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
+    @Transactional
+    public void removeFollow(Long userId, Long unfollowId) {
+        try {
+            User user = this.getUser(userId);
+
+            User unfollow = this.getUser(unfollowId);
+
+            user.Unfollow(unfollow);
+
+            unfollow.removeFollower(user);
+
+            userRepository.save(user);
+            userRepository.save(unfollow);
+        } catch (Exception ex) {
+            // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
+            // We catch the normal exception and then transform it in a ServiceException
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
+    public Collection<User> getFollowing(Long id) {
+        return this.getUser(id).getFollowing();
+    }
+
+    public Collection<User> getFollowers(Long id) {
+        return this.getUser(id).getFollowers();
+    }
+
 }
