@@ -20,10 +20,11 @@ public class User implements Serializable {
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, Integer phoneNumber) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.phoneNumber = phoneNumber;
     this.tasks = new ArrayList<>();
     this.workouts = new ArrayList<>();
   }
@@ -40,6 +41,12 @@ public class User implements Serializable {
 
   @NotNull
   private String password;
+
+  @NotNull
+  private Integer phoneNumber;
+
+  @NotNull
+  private String description = "Hey! I'm using Avarst";
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Collection<Task> tasks;
@@ -65,6 +72,16 @@ public class User implements Serializable {
   public String getUsername() {
     return username;
   }
+
+  @JsonView(Views.Public.class)
+  public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+  @JsonView(Views.Public.class)
+  public String getDescription() {
+        return description;
+    }
 
   @JsonIgnore
   public String getPassword() {
