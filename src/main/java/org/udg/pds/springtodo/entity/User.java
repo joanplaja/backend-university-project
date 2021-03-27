@@ -54,6 +54,15 @@ public class User implements Serializable {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Collection<Workout> workouts;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "relation",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "following_id"))
+  private Collection<User> following;
+
+  @ManyToMany(mappedBy = "following")
+  private Collection<User> followers;
+
   @JsonView(Views.Private.class)
   public Long getId() {
     return id;
@@ -111,7 +120,35 @@ public class User implements Serializable {
   }
 
   public void addWorkout(Workout workout) {
-        workouts.add(workout);
-    }
+      workouts.add(workout);
+  }
+
+  public void addFollower(User u) {
+      followers.add(u);
+  }
+
+  public void removeFollower(User u) {
+      followers.remove(u);
+  }
+
+  public void Follow(User u) {
+      following.add(u);
+  }
+
+  public void Unfollow(User u) {
+      following.remove(u);
+  }
+
+  @JsonView(Views.Complete.class)
+  public Collection<User> getFollowers() {
+      followers.size();
+      return followers;
+  }
+
+  @JsonView(Views.Complete.class)
+  public Collection<User> getFollowing() {
+      following.size();
+      return following;
+  }
 
 }
