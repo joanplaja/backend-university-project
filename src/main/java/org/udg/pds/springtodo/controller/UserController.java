@@ -12,6 +12,7 @@ import org.udg.pds.springtodo.service.UserService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 // This class is used to process all the authentication related URLs
 @RequestMapping(path="/users")
@@ -100,6 +101,43 @@ public class UserController extends BaseController {
 
         return BaseController.OK_MESSAGE;
     }
+
+    @PostMapping(path="/follow/{id}")
+    public String Follow(HttpSession session, @PathVariable("id") Long followId) {
+
+        Long loggedUserId = getLoggedUser(session);
+        userService.addFollowing(loggedUserId, followId);
+        return BaseController.OK_MESSAGE;
+
+    }
+
+    @PostMapping(path="/unfollow/{id}")
+    public String unFollow(HttpSession session, @PathVariable("id") Long unfollowId) {
+
+        Long loggedUserId = getLoggedUser(session);
+        userService.removeFollow(loggedUserId, unfollowId);
+        return BaseController.OK_MESSAGE;
+
+    }
+
+    @GetMapping(path="/following")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowing(HttpSession session) {
+
+        Long loggedUserId = getLoggedUser(session);
+
+        return userService.getFollowing(loggedUserId);
+    }
+
+    @GetMapping(path="/followers")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowers(HttpSession session) {
+
+        Long loggedUserId = getLoggedUser(session);
+
+        return userService.getFollowers(loggedUserId);
+    }
+
 
 
     static class LoginUser {
