@@ -7,18 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.udg.pds.springtodo.entity.IdObject;
+import org.udg.pds.springtodo.entity.Point;
 import org.udg.pds.springtodo.entity.Tag;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.TagRepository;
 import org.udg.pds.springtodo.repository.TaskRepository;
 import org.udg.pds.springtodo.repository.UserRepository;
-import org.udg.pds.springtodo.service.TagService;
-import org.udg.pds.springtodo.service.TaskService;
-import org.udg.pds.springtodo.service.UserService;
-import org.udg.pds.springtodo.service.WorkoutService;
+import org.udg.pds.springtodo.service.*;
 
 import javax.annotation.PostConstruct;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,6 +42,14 @@ public class Global {
     @Autowired
     private
     WorkoutService workoutService;
+
+    @Autowired
+    private
+    RouteService routeService;
+
+    @Autowired
+    private
+    PointService pointService;
 
     @Autowired
     private
@@ -70,7 +78,6 @@ public class Global {
 
     @Value("${todospring.base-port:8080}")
     private String BASE_PORT;
-
 
     @PostConstruct
     void init() {
@@ -108,10 +115,15 @@ public class Global {
                 add(tag.getId());
             }});
             User user2 = userService.register("user", "user@hotmail.com", "0000");
-            workoutService.addWorkout("running", user.getId(), new Date());
+            IdObject workouId = workoutService.addWorkout("running", user.getId(), new Date());
             workoutService.addWorkout("cycling", user.getId(), new Date());
             workoutService.addWorkout("hiking", user2.getId(), new Date());
             workoutService.addWorkout("walking", user2.getId(), new Date());
+            IdObject routeId = routeService.addRoute(user.getId(),workouId.getId(),2.10,2.10);
+            ArrayList<Point> points = new ArrayList<Point>();
+            points.add(new Point(2.10,2.10));
+            pointService.addPoints(routeId.getId(),points);
+            pointService.addPoint(routeId.getId(),2.10,2.10);
         }
     }
 

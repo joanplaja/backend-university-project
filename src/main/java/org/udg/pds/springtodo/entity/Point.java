@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
+import org.udg.pds.springtodo.serializer.JsonTagSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,20 +14,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+
 @Entity
 // This tells JAXB that it has to ignore getters and setters and only use fields for JSON marshaling/unmarshaling
-public class Workout implements Serializable {
+public class Point implements Serializable {
     /**
      * Default value included to remove warning. Remove or modify at will.
      **/
     private static final long serialVersionUID = 1L;
 
-    public Workout() {
+    public Point() {
     }
 
-    public Workout(String type, Date dateCreated) {
-        this.type = type;
-        this.dateCreated = dateCreated;
+    public Point(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // This tells JAXB that this field can be used as ID
@@ -36,62 +38,33 @@ public class Workout implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    private double latitude;
 
-    private Date dateCreated;
+    private double longitude;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_user")
-    private User user;
-
-    @Column(name = "fk_user", insertable = false, updatable = false)
-    private Long userId;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_route")
     private Route route;
 
-    @JsonView(Views.Private.class)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @JsonIgnore
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    @Column(name = "fk_route", insertable = false, updatable = false)
+    private Long routeId;
 
     public void setRoute(Route route) {
         this.route = route;
     }
 
-    @JsonView(Views.Private.class)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @JsonView(Views.Complete.class)
-    public long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
     @JsonView(Views.Private.class)
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @JsonDeserialize(as= JsonDateDeserializer.class)
-    public Date getDateCreated() {
-        return dateCreated;
+    public Double latitude() {
+        return latitude;
+    }
+
+    @JsonView(Views.Private.class)
+    public Double longitude() {
+        return longitude;
     }
 
 }
