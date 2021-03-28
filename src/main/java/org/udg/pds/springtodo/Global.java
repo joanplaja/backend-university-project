@@ -108,7 +108,7 @@ public class Global {
         if (activeProfile.equals("dev")) {
             logger.info("Starting populating database ...");
 
-            User user = userService.register("usuari", "usuari@hotmail.com", "123456");
+            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658);
             IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
             Tag tag = tagService.addTag("ATag", "Just a tag");
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{

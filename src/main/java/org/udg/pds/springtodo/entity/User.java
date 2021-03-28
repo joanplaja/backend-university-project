@@ -20,10 +20,11 @@ public class User implements Serializable {
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, Integer phoneNumber) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.phoneNumber = phoneNumber;
     this.tasks = new ArrayList<>();
     this.workouts = new ArrayList<>();
   }
@@ -41,11 +42,26 @@ public class User implements Serializable {
   @NotNull
   private String password;
 
+  @NotNull
+  private Integer phoneNumber;
+
+  @NotNull
+  private String description = "Hey! I'm using Avarst";
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Collection<Task> tasks;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Collection<Workout> workouts;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "relation",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "following_id"))
+  private Collection<User> following;
+
+  @ManyToMany(mappedBy = "following")
+  private Collection<User> followers;
 
   @JsonView(Views.Private.class)
   public Long getId() {
@@ -65,6 +81,16 @@ public class User implements Serializable {
   public String getUsername() {
     return username;
   }
+
+  @JsonView(Views.Public.class)
+  public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+  @JsonView(Views.Public.class)
+  public String getDescription() {
+        return description;
+    }
 
   @JsonIgnore
   public String getPassword() {
@@ -94,7 +120,35 @@ public class User implements Serializable {
   }
 
   public void addWorkout(Workout workout) {
-        workouts.add(workout);
-    }
+      workouts.add(workout);
+  }
+
+  public void addFollower(User u) {
+      followers.add(u);
+  }
+
+  public void removeFollower(User u) {
+      followers.remove(u);
+  }
+
+  public void Follow(User u) {
+      following.add(u);
+  }
+
+  public void Unfollow(User u) {
+      following.remove(u);
+  }
+
+  @JsonView(Views.Complete.class)
+  public Collection<User> getFollowers() {
+      followers.size();
+      return followers;
+  }
+
+  @JsonView(Views.Complete.class)
+  public Collection<User> getFollowing() {
+      following.size();
+      return following;
+  }
 
 }
