@@ -20,6 +20,9 @@ public class RouteService {
     RouteRepository routeRepository;
 
     @Autowired
+    WorkoutRepository workoutRepository;
+
+    @Autowired
     PointService pointService;
 
     @Autowired
@@ -33,13 +36,14 @@ public class RouteService {
         return r.get();
     }
 
-    public IdObject addRoute( Long userId, Long workoutId, double initialLatitude, double initialLongitude ) {
+    public IdObject addRoute(Long userId, Long workoutId, double initialLatitude, double initialLongitude ) {
         try {
             Workout workout = workoutService.getWorkout(userId, workoutId);
             Route route = new Route(new Point(initialLatitude, initialLongitude));
             workout.setRoute(route);
             route.setWorkout(workout);
             routeRepository.save(route);
+            workoutRepository.save(workout);
             return new IdObject(route.getId());
         } catch (Exception ex) {
             throw new ServiceException(ex.getMessage());

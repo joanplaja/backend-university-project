@@ -38,6 +38,7 @@ public class Route implements Serializable {
     @Id
     // Don't forget to use the extra argument "strategy = GenerationType.IDENTITY" to get AUTO_INCREMENT
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private double initialLatitude;
