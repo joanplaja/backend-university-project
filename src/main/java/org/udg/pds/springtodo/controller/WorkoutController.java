@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.entity.IdObject;
+import org.udg.pds.springtodo.entity.Point;
 import org.udg.pds.springtodo.entity.Workout;
 import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
@@ -16,6 +17,8 @@ import org.udg.pds.springtodo.service.WorkoutService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -66,6 +69,24 @@ public class WorkoutController extends BaseController {
         @NotNull
         @JsonDeserialize(using=JsonDateDeserializer.class)
         public Date dateCreated;
+    }
+
+    static class R_Route {
+        @NotNull
+        public Double initialLatitude;
+
+        @NotNull
+        public Double initialLongitude;
+
+    }
+
+    static class R_Add_Points_To_Route {
+        @NotNull
+        public Long workoutId;
+
+        @NotNull
+        public ArrayList<Point> points;
+
     }
 
 }
