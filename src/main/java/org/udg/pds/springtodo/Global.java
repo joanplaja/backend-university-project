@@ -114,7 +114,7 @@ public class Global {
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            User user2 = userService.register("user", "user@hotmail.com", "0000");
+            User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789);
             IdObject workouId = workoutService.addWorkout("running", user.getId(), new Date());
             workoutService.addWorkout("cycling", user.getId(), new Date());
             workoutService.addWorkout("hiking", user2.getId(), new Date());
