@@ -105,13 +105,4 @@ public class WorkoutController extends BaseController {
 
     }
 
-    static class R_Points {
-        @NotNull
-        public Long routeId;
-
-        @NotNull
-        public ArrayList<Map<Double, Double>> points;
-
-    }
-
 }
