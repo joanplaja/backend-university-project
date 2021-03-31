@@ -61,11 +61,12 @@ public class WorkoutController extends BaseController {
     }
 
     @GetMapping(path = "/{id}/routes")
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Complete.class)
     public Route getWorkoutRoute(HttpSession session, @PathVariable("id") Long workoutId) {
         Long userId = getLoggedUser(session);
-
-        return routeService.getRoute(workoutId);
+        Route r = routeService.getRoute(workoutId, userId);
+        System.out.println(r.getId());
+        return r;
     }
 
     @PostMapping(path = "/{id}/routes", consumes = "application/json")

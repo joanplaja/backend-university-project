@@ -70,6 +70,11 @@ public class Workout implements Serializable {
         this.user = user;
     }
 
+    @JsonView(Views.Complete.class)
+    public Route getRoute() {
+        return route;
+    }
+
     public void setRoute(Route route) {
         this.route = route;
     }

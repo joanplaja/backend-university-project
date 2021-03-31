@@ -26,6 +26,7 @@ public class PointService {
 
     public PointRepository crud(){ return  pointRepository; }
 
+    /*
     public boolean addPoints(Long idRoute, Collection<Point> points){
         try {
         Route route = routeService.getRoute(idRoute);
@@ -55,7 +56,7 @@ public class PointService {
             throw new ServiceException(ex.getMessage());
         }
     }
-
+    */
 
 
 }

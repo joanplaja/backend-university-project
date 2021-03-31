@@ -38,9 +38,9 @@ public class Point implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double latitude;
+    private Double latitude;
 
-    private double longitude;
+    private Double longitude;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_route")

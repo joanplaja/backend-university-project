@@ -10,6 +10,7 @@ import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 import org.udg.pds.springtodo.serializer.JsonTagSerializer;
 
 import javax.persistence.*;
+import javax.swing.text.View;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,9 +42,9 @@ public class Route implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    private double initialLatitude;
+    private Double initialLatitude;
 
-    private double initialLongitude;
+    private Double initialLongitude;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "route",fetch = FetchType.EAGER)
     private Collection<Point> points;
@@ -57,8 +58,19 @@ public class Route implements Serializable {
 
     public void addPoint(Point p){ points.add(p);}
 
+    @JsonView(Views.Private.class)
     public Long getId() {
         return id;
+    }
+
+    @JsonView(Views.Private.class)
+    public Double getInitialLatitude() {
+        return initialLatitude;
+    }
+
+    @JsonView(Views.Private.class)
+    public Double getInitialLongitude() {
+        return initialLongitude;
     }
 
     @JsonView(Views.Complete.class)
