@@ -53,6 +53,7 @@ public class Point implements Serializable {
         this.route = route;
     }
 
+    @JsonView(Views.Private.class)
     public Long getId() {
         return id;
     }

@@ -43,7 +43,8 @@ public class RouteService {
         return route;
     }
 
-    public IdObject addRoute(Long userId, Long workoutId, double initialLatitude, double initialLongitude ) {
+    @Transactional
+    public IdObject addRoute(Long userId, Long workoutId, Double initialLatitude, Double initialLongitude ) {
         try {
             Workout workout = workoutService.getWorkout(userId, workoutId);
             Route route = new Route(new Point(initialLatitude, initialLongitude));

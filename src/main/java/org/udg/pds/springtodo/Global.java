@@ -119,14 +119,14 @@ public class Global {
             //workoutService.addWorkout("cycling", user.getId(), new Date());
             IdObject w2 = workoutService.addWorkout("hiking", user2.getId(), new Date());
             //workoutService.addWorkout("walking", user2.getId(), new Date());
-            IdObject routeId1 = routeService.addRoute(user.getId(), w1.getId(),10,10);
-            IdObject routeId2 = routeService.addRoute(user2.getId(), w2.getId(),20,20);
-            /* S'ha d'arreglar aquesta part del servei dels punts, suposo que passa el mateix, que falta el .save() quan es modifica la ruta.
-            ArrayList<Point> points = new ArrayList<Point>();
-            points.add(new Point(2.10,2.10));
-            pointService.addPoints(routeId1.getId(),points);
-            pointService.addPoint(routeId2.getId(),2.10,2.10);
-             */
+            IdObject routeId1 = routeService.addRoute(user.getId(), w1.getId(),10.0,10.0);
+            IdObject routeId2 = routeService.addRoute(user2.getId(), w2.getId(),10.0,10.0);
+            ArrayList<Point> points = new ArrayList<>();
+            ArrayList<Point> points2 = new ArrayList<>();
+            points.add(new Point(20.0,20.0));
+            points2.add(new Point(20.0, 20.0));
+            pointService.addPoints(user.getId(), routeId1.getId(), points);
+            pointService.addPoints(user2.getId(), routeId2.getId(), points2);
         }
     }
 
