@@ -20,6 +20,9 @@ public class RouteService {
     RouteRepository routeRepository;
 
     @Autowired
+    WorkoutRepository workoutRepository;
+
+    @Autowired
     PointService pointService;
 
     @Autowired
@@ -27,19 +30,28 @@ public class RouteService {
 
     public RouteRepository crud(){ return routeRepository; }
 
-    public Route getRoute(Long workoutId){
-        Optional<Route> r = routeRepository.findById(workoutId);
-        if (!r.isPresent()) throw new ServiceException("Route does not exist");
-        return r.get();
+    public Route getRoute(Long workoutId, Long userId){
+        Optional<Workout> w = workoutRepository.findById(workoutId);
+        if (!w.isPresent()) throw new ServiceException("Workout does not exist");
+        if (w.get().getUser().getId() != userId)
+            throw new ServiceException("User does not have this workout");
+        Workout workout = w.get();
+        Route route = workout.getRoute();
+        if(route == null) {
+            throw new ServiceException("This workout does not have a route");
+        }
+        return route;
     }
 
-    public IdObject addRoute( Long userId, Long workoutId, double initialLatitude, double initialLongitude ) {
+    @Transactional
+    public IdObject addRoute(Long userId, Long workoutId, Double initialLatitude, Double initialLongitude ) {
         try {
             Workout workout = workoutService.getWorkout(userId, workoutId);
             Route route = new Route(new Point(initialLatitude, initialLongitude));
             workout.setRoute(route);
             route.setWorkout(workout);
             routeRepository.save(route);
+            workoutRepository.save(workout);
             return new IdObject(route.getId());
         } catch (Exception ex) {
             throw new ServiceException(ex.getMessage());

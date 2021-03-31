@@ -34,6 +34,7 @@ public class Workout implements Serializable {
     @Id
     // Don't forget to use the extra argument "strategy = GenerationType.IDENTITY" to get AUTO_INCREMENT
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String type;
@@ -48,7 +49,7 @@ public class Workout implements Serializable {
     private Long userId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_route", referencedColumnName = "id")
     private Route route;
 
     @JsonView(Views.Private.class)
@@ -67,6 +68,11 @@ public class Workout implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @JsonView(Views.Complete.class)
+    public Route getRoute() {
+        return route;
     }
 
     public void setRoute(Route route) {

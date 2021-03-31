@@ -27,6 +27,8 @@ public class User implements Serializable {
     this.phoneNumber = phoneNumber;
     this.tasks = new ArrayList<>();
     this.workouts = new ArrayList<>();
+    this.following = new ArrayList<>();
+    this.followers = new ArrayList<>();
   }
 
   @Id
@@ -54,7 +56,7 @@ public class User implements Serializable {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Collection<Workout> workouts;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(/*fetch = FetchType.EAGER*/)
   @JoinTable(name = "relation",
       joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "following_id"))

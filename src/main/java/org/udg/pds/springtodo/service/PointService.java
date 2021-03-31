@@ -26,25 +26,26 @@ public class PointService {
 
     public PointRepository crud(){ return  pointRepository; }
 
-    public boolean addPoints(Long idRoute, Collection<Point> points){
+    @Transactional
+    public IdObject addPoints(Long userId, Long idRoute, Collection<Point> points){
         try {
-        Route route = routeService.getRoute(idRoute);
+            Route route = routeService.getRoute(idRoute, userId);
 
-        for (Point p : points) {
-            p.setRoute(route);
-            route.addPoint(p);
-            pointRepository.save(p);
-        }
-        return true;
+            for (Point p : points) {
+                p.setRoute(route);
+                route.addPoint(p);
+                pointRepository.save(p);
+            }
+            return new IdObject(route.getId());
         }
         catch (Exception ex) {
             throw new ServiceException(ex.getMessage());
         }
     }
-
-    public IdObject addPoint(Long idRoute, double latitude, double longitude){
+    /*
+    public IdObject addPoint(Long userId, Long idRoute, double latitude, double longitude){
         try {
-            Route route = routeService.getRoute(idRoute);
+            Route route = routeService.getRoute(idRoute, userId);
             Point p = new Point(latitude,longitude);
             p.setRoute(route);
             route.addPoint(p);
@@ -55,7 +56,6 @@ public class PointService {
             throw new ServiceException(ex.getMessage());
         }
     }
-
-
+    */
 
 }
