@@ -2,8 +2,13 @@ package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,145 +17,175 @@ import java.util.Collection;
 @Entity(name = "users")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email", "username"}))
 public class User implements Serializable {
-  /**
-   * Default value included to remove warning. Remove or modify at will. *
-   */
-  private static final long serialVersionUID = 1L;
+    /**
+     * Default value included to remove warning. Remove or modify at will. *
+     */
+    private static final long serialVersionUID = 1L;
 
-  public User() {
-  }
+    public User() {
+    }
 
-  public User(String username, String email, String password, Integer phoneNumber) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.phoneNumber = phoneNumber;
-    this.tasks = new ArrayList<>();
-    this.workouts = new ArrayList<>();
-    this.following = new ArrayList<>();
-    this.followers = new ArrayList<>();
-  }
+    public User(String username, String email, String password, Integer phoneNumber, String firstName, String lastName, Integer age) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.tasks = new ArrayList<>();
+        this.workouts = new ArrayList<>();
+        this.following = new ArrayList<>();
+        this.followers = new ArrayList<>();
+    }
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @NotNull
-  private String username;
+    @NotNull
+    private String username;
 
-  @NotNull
-  private String email;
+    @NotNull
+    private String email;
 
-  @NotNull
-  private String password;
+    @NotNull
+    private String password;
 
-  @NotNull
-  private Integer phoneNumber;
+    @NotNull
+    private Integer phoneNumber;
 
-  @NotNull
-  private String description = "Hey! I'm using Avarst";
+    @NotNull
+    private String description = "Hey! I'm using Avarst";
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-  private Collection<Task> tasks;
+    @NotNull
+    private String firstName;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-  private Collection<Workout> workouts;
+    @NotNull
+    private String lastName;
 
-  @ManyToMany(/*fetch = FetchType.EAGER*/)
-  @JoinTable(name = "relation",
-      joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "following_id"))
-  private Collection<User> following;
+    @NotNull
+    private Integer age;
 
-  @ManyToMany(mappedBy = "following")
-  private Collection<User> followers;
 
-  @JsonView(Views.Private.class)
-  public Long getId() {
-    return id;
-  }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Task> tasks;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Workout> workouts;
 
-  @JsonView(Views.Private.class)
-  public String getEmail() {
-    return email;
-  }
+    @ManyToMany(/*fetch = FetchType.EAGER*/)
+    @JoinTable(name = "relation",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private Collection<User> following;
 
-  @JsonView(Views.Public.class)
-  public String getUsername() {
-    return username;
-  }
+    @ManyToMany(mappedBy = "following")
+    private Collection<User> followers;
 
-  @JsonView(Views.Public.class)
-  public Integer getPhoneNumber() {
+    @JsonView(Views.Private.class)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @JsonView(Views.Private.class)
+    public String getEmail() {
+        return email;
+    }
+
+    @JsonView(Views.Public.class)
+    public String getUsername() {
+        return username;
+    }
+
+    @JsonView(Views.Public.class)
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-  @JsonView(Views.Public.class)
-  public String getDescription() {
+    @JsonView(Views.Public.class)
+    public String getDescription() {
         return description;
     }
 
-  @JsonIgnore
-  public String getPassword() {
-    return password;
-  }
+    @JsonView(Views.Public.class)
+    public String getFirstName() {
+        return firstName;
+    }
 
-  @JsonView(Views.Complete.class)
-  public Collection<Task> getTasks() {
-    // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
-    // that you have to query the object (calling size(), for example) to get the list initialized
-    // More: http://www.javabeat.net/jpa-lazy-eager-loading/
-    tasks.size();
-    return tasks;
-  }
+    @JsonView(Views.Public.class)
+    public String getLastName() {
+        return lastName;
+    }
 
-  @JsonView(Views.Complete.class)
-  public Collection<Workout> getWorkouts() {
-      // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
-      // that you have to query the object (calling size(), for example) to get the list initialized
-      // More: http://www.javabeat.net/jpa-lazy-eager-loading/
-      workouts.size();
-      return workouts;
-  }
+    @JsonView(Views.Public.class)
+    public Integer getAge() {
+        return age;
+    }
 
-  public void addTask(Task task) {
-    tasks.add(task);
-  }
 
-  public void addWorkout(Workout workout) {
-      workouts.add(workout);
-  }
 
-  public void addFollower(User u) {
-      followers.add(u);
-  }
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
 
-  public void removeFollower(User u) {
-      followers.remove(u);
-  }
+    @JsonView(Views.Complete.class)
+    public Collection<Task> getTasks() {
+        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
+        // that you have to query the object (calling size(), for example) to get the list initialized
+        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+        tasks.size();
+        return tasks;
+    }
 
-  public void Follow(User u) {
-      following.add(u);
-  }
+    @JsonView(Views.Complete.class)
+    public Collection<Workout> getWorkouts() {
+        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
+        // that you have to query the object (calling size(), for example) to get the list initialized
+        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+        workouts.size();
+        return workouts;
+    }
 
-  public void Unfollow(User u) {
-      following.remove(u);
-  }
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 
-  @JsonView(Views.Complete.class)
-  public Collection<User> getFollowers() {
-      followers.size();
-      return followers;
-  }
+    public void addWorkout(Workout workout) {
+        workouts.add(workout);
+    }
 
-  @JsonView(Views.Complete.class)
-  public Collection<User> getFollowing() {
-      following.size();
-      return following;
-  }
+    public void addFollower(User u) {
+        followers.add(u);
+    }
 
+    public void removeFollower(User u) {
+        followers.remove(u);
+    }
+
+    public void Follow(User u) {
+        following.add(u);
+    }
+
+    public void Unfollow(User u) {
+        following.remove(u);
+    }
+
+    @JsonView(Views.Complete.class)
+    public Collection<User> getFollowers() {
+        followers.size();
+        return followers;
+    }
+
+    @JsonView(Views.Complete.class)
+    public Collection<User> getFollowing() {
+        following.size();
+        return following;
+    }
 }
+

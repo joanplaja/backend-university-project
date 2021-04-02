@@ -1,6 +1,7 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -41,7 +42,7 @@ public class UserService {
             throw new ServiceException("Password does not match");
     }
 
-    public User register(String username, String email, String password, Integer phoneNumber) {
+    public User register(String username, String email, String password, Integer phoneNumber, String firstName, String lastName, Integer age) {
 
         List<User> uEmail = userRepository.findByEmail(email);
         if (uEmail.size() > 0)
@@ -52,7 +53,7 @@ public class UserService {
         if (uUsername.size() > 0)
             throw new ServiceException("Username already exists");
 
-        User nu = new User(username, email, password, phoneNumber);
+        User nu = new User(username, email, password, phoneNumber, firstName, lastName, age);
         userRepository.save(nu);
         return nu;
     }
@@ -126,6 +127,10 @@ public class UserService {
 
     public Collection<User> getFollowers(Long id) {
         return this.getUser(id).getFollowers();
+    }
+
+    public List <User> findUser(Specification<User> spec){
+        return userRepository.findAll(spec);
     }
 
 }
