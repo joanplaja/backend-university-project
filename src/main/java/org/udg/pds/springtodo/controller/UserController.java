@@ -2,10 +2,12 @@ package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.entity.User;
+import org.udg.pds.springtodo.entity.UserSpecificationsBuilder;
 import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.service.UserService;
 
@@ -13,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // This class is used to process all the authentication related URLs
 @RequestMapping(path="/users")
@@ -71,7 +76,7 @@ public class UserController extends BaseController {
     public String register(HttpSession session, @Valid  @RequestBody RegisterUser ru) {
 
         checkNotLoggedIn(session);
-        userService.register(ru.username, ru.email, ru.password, ru.phoneNumber);
+        userService.register(ru.username, ru.email, ru.password, ru.phoneNumber, ru.firstName, ru.lastName, ru.age);
 
         LoginUser loginUser = new LoginUser(ru.username, ru.password);
         login(session, loginUser);
@@ -140,6 +145,19 @@ public class UserController extends BaseController {
         return userService.getFollowers(loggedUserId);
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    @JsonView(Views.Public.class)
+    public List<User> search(@RequestParam(value = "search") String search) {
+        UserSpecificationsBuilder builder = new UserSpecificationsBuilder();
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+        Matcher matcher = pattern.matcher(search + ",");
+        while (matcher.find()) {
+            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+        }
+
+        Specification<User> spec = builder.build();
+        return userService.findUser(spec);
+    }
 
 
     static class LoginUser {
@@ -163,6 +181,12 @@ public class UserController extends BaseController {
         public String password;
         @NotNull
         public Integer phoneNumber;
+        @NotNull
+        private String firstName;
+        @NotNull
+        private String lastName;
+        @NotNull
+        private Integer age;
     }
 
     static class ID {

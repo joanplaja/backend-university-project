@@ -108,13 +108,13 @@ public class Global {
         if (activeProfile.equals("dev")) {
             logger.info("Starting populating database ...");
 
-            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658);
+            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658, "John", "Doe", 22);
             IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
             Tag tag = tagService.addTag("ATag", "Just a tag");
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789);
+            User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789, "Tom", "Doe", 26);
             IdObject w1 = workoutService.addWorkout("running", user.getId(), new Date());
             //workoutService.addWorkout("cycling", user.getId(), new Date());
             IdObject w2 = workoutService.addWorkout("hiking", user2.getId(), new Date());
