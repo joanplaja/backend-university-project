@@ -37,7 +37,7 @@ public class RouteController extends BaseController {
 
 
     @PostMapping(path = "/{id}/points", consumes = "application/json")
-    public IdObject addPointsToRoute(HttpSession session, @Valid @RequestBody Double[][] points, @PathVariable("id") Long routeId) {
+    public IdObject addPointsToRoute(HttpSession session, @Valid @RequestBody Double[][] points, @PathVariable("id") Long workoutId) {
 
         Long userId = getLoggedUser(session);
         ArrayList<Point> newPoints = new ArrayList<>();
@@ -45,7 +45,7 @@ public class RouteController extends BaseController {
             Point p = new Point(coordinate[0], coordinate[1]);
             newPoints.add(p);
         }
-        return pointService.addPoints(userId, routeId, newPoints);
+        return pointService.addPoints(userId, workoutId, newPoints);
     }
 
 }
