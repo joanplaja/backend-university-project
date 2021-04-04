@@ -32,6 +32,10 @@ public class UserService {
 
         List<User> uc = userRepository.findByUsername(username);
 
+        if(uc.size() == 0){
+            uc = userRepository.findByEmail(username);
+        }
+
         if (uc.size() == 0) throw new ServiceException("User does not exists");
 
         User u = uc.get(0);
