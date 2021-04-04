@@ -76,6 +76,7 @@ public class UserController extends BaseController {
     public String register(HttpSession session, @Valid  @RequestBody RegisterUser ru) {
 
         checkNotLoggedIn(session);
+
         userService.register(ru.username, ru.email, ru.password, ru.phoneNumber, ru.firstName, ru.lastName, ru.age);
 
         LoginUser loginUser = new LoginUser(ru.username, ru.password);
@@ -182,11 +183,11 @@ public class UserController extends BaseController {
         @NotNull
         public Integer phoneNumber;
         @NotNull
-        private String firstName;
+        public String firstName;
         @NotNull
-        private String lastName;
+        public String lastName;
         @NotNull
-        private Integer age;
+        public Integer age;
     }
 
     static class ID {
