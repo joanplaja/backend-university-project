@@ -24,9 +24,8 @@ public class Workout implements Serializable {
     public Workout() {
     }
 
-    public Workout(String type, Date dateCreated) {
+    public Workout(String type) {
         this.type = type;
-        this.dateCreated = dateCreated;
     }
 
     // This tells JAXB that this field can be used as ID
@@ -38,8 +37,6 @@ public class Workout implements Serializable {
     private Long id;
 
     private String type;
-
-    private Date dateCreated;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user")
@@ -91,13 +88,6 @@ public class Workout implements Serializable {
     @JsonView(Views.Complete.class)
     public long getUserId() {
         return userId;
-    }
-
-    @JsonView(Views.Private.class)
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @JsonDeserialize(as= JsonDateDeserializer.class)
-    public Date getDateCreated() {
-        return dateCreated;
     }
 
 }

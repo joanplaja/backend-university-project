@@ -14,6 +14,7 @@ import java.io.IOException;
 public class BaseController {
 
   static String OK_MESSAGE = "\"ok\"";
+  static String BAD_MESSAGE = "\"bad\"";
 
   Long getLoggedUser(HttpSession session) {
 

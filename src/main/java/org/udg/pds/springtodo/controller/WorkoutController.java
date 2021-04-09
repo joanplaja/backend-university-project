@@ -54,30 +54,30 @@ public class WorkoutController extends BaseController {
 
     @PostMapping(consumes = "application/json")
     public IdObject addWorkout(HttpSession session, @Valid @RequestBody R_Workout workout) {
-
+        //Ara el workout conte una ruta a dins, i quan es crea un workout, s'ha d'especificar la latitude i longitude (documentat a la wiki)
         Long userId = getLoggedUser(session);
-
-        return workoutService.addWorkout(workout.type, userId, workout.dateCreated);
+        IdObject workoutId = workoutService.addWorkoutWithRoute(workout.type, userId, workout.route.initialLatitude, workout.route.initialLongitude);
+        return workoutId;
     }
 
-    @GetMapping(path = "/{id}/routes")
-    @JsonView(Views.Complete.class)
-    public Route getWorkoutRoute(HttpSession session, @PathVariable("id") Long workoutId) {
-        Long userId = getLoggedUser(session);
-        Route r = routeService.getRoute(workoutId, userId);
-        System.out.println(r.getId());
-        return r;
-    }
-
-    @PostMapping(path = "/{id}/routes", consumes = "application/json")
-    public IdObject addRoute(HttpSession session, @Valid @RequestBody R_Route route, @PathVariable("id") Long workoutId) {
+    @PostMapping(path = "/{id}/points", consumes = "application/json")
+    public String addPointsToRoute(HttpSession session, @Valid @RequestBody Double[][] points, @PathVariable("id") Long workoutId) {
 
         Long userId = getLoggedUser(session);
-
-        return routeService.addRoute(userId, workoutId, route.initialLatitude, route.initialLongitude);
+        ArrayList<Point> newPoints = new ArrayList<>();
+        for(Double[] coordinate : points) {
+            Point p = new Point(coordinate[0], coordinate[1]);
+            newPoints.add(p);
+        }
+        boolean res = pointService.addPoints(userId, workoutId, newPoints);
+        String resultStatment;
+        if(res) {
+            resultStatment = BaseController.OK_MESSAGE;
+        } else {
+            resultStatment = BaseController.BAD_MESSAGE;
+        }
+        return resultStatment;
     }
-
-
 
     @DeleteMapping(path="/{id}")
     public String deleteWorkout(HttpSession session,
@@ -92,8 +92,8 @@ public class WorkoutController extends BaseController {
         public String type;
 
         @NotNull
-        @JsonDeserialize(using=JsonDateDeserializer.class)
-        public Date dateCreated;
+         public R_Route route;
+
     }
 
     static class R_Route {
@@ -104,5 +104,27 @@ public class WorkoutController extends BaseController {
         public Double initialLongitude;
 
     }
-
 }
+
+
+    /*
+    Comento aquests perque no s'haurien d'utilitzar
+
+    @GetMapping(path = "/{id}/routes")
+    @JsonView(Views.Complete.class)
+    public Route getWorkoutRoute(HttpSession session, @PathVariable("id") Long workoutId) {
+        Long userId = getLoggedUser(session);
+        Route r = routeService.getRoute(workoutId, userId);
+        return r;
+    }
+
+
+    @PostMapping(path = "/{id}/routes", consumes = "application/json")
+    public IdObject addRoute(HttpSession session, @Valid @RequestBody R_Route route, @PathVariable("id") Long workoutId) {
+
+        Long userId = getLoggedUser(session);
+
+        return routeService.addRoute(userId, workoutId, route.initialLatitude, route.initialLongitude);
+    }
+
+     */

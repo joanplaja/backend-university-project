@@ -27,7 +27,7 @@ public class PointService {
     public PointRepository crud(){ return  pointRepository; }
 
     @Transactional
-    public IdObject addPoints(Long userId, Long workoutId, Collection<Point> points){
+    public boolean addPoints(Long userId, Long workoutId, Collection<Point> points){
         try {
             Route route = routeService.getRoute(workoutId, userId);
 
@@ -36,7 +36,7 @@ public class PointService {
                 route.addPoint(p);
                 pointRepository.save(p);
             }
-            return new IdObject(route.getId());
+            return true;
         }
         catch (Exception ex) {
             throw new ServiceException(ex.getMessage());
