@@ -22,6 +22,9 @@ public class WorkoutService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RouteService routeService;
+
     public WorkoutRepository crud() {
         return workoutRepository;
     }
@@ -39,11 +42,11 @@ public class WorkoutService {
     }
 
     @Transactional
-    public IdObject addWorkout(String type, Long userId, Date created) {
+    public IdObject addWorkout(String type, Long userId) {
         try {
             User user = userService.getUser(userId);
 
-            Workout workout = new Workout(type, created);
+            Workout workout = new Workout(type);
 
             workout.setUser(user);
 
@@ -58,4 +61,10 @@ public class WorkoutService {
         }
     }
 
+    @Transactional
+    public IdObject addWorkoutWithRoute(String type, Long userId, Double initialLatitude, Double initialLongitude) {
+        IdObject workoutId = addWorkout(type, userId);
+        routeService.addRoute(userId, workoutId.getId(), initialLatitude, initialLongitude);
+        return workoutId;
+    }
 }
