@@ -137,4 +137,10 @@ public class UserService {
         return userRepository.findAll(spec);
     }
 
+    public Long getUserId(String username){
+        List<User> uc = userRepository.findByUsername(username);
+        User u = uc.get(0);
+        return u.getId();
+    }
+
 }

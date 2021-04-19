@@ -160,6 +160,13 @@ public class UserController extends BaseController {
         return userService.findUser(spec);
     }
 
+    @GetMapping(path="/id/{username}")
+    @JsonView(Views.Public.class)
+    public Long getUserId(HttpSession session, @PathVariable("username") String username) {
+        getLoggedUser(session);
+
+        return userService.getUserId(username);
+    }
 
     static class LoginUser {
         @NotNull
