@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public interface RouteRepository extends JpaRepository<Route, Long> {
-    @Query(value = "SELECT * FROM route r WHERE ( 6371 * acos(cos(RADIANS(:latitude)) * cos(radians(r.initialLatitude)) * cos(radians(r.initialLongitude) - RADIANS( :latitude )) + sin(radians( :longitude )) * sin(radians(r.initialLatitude )))) < :kmLimit ",
+    @Query(value = "SELECT * FROM route r WHERE ( 6371 * acos(cos(RADIANS(:latitude)) * cos(radians(r.initialLatitude)) * cos(radians(r.initialLongitude) - RADIANS( :longitude )) + sin(radians( :latitude )) * sin(radians(r.initialLatitude )))) < :kmLimit ",
     nativeQuery = true)
     List<Route> findNearRoutes(@Param("latitude") Double latitude,@Param("longitude") Double longitude,@Param("kmLimit") Integer kmLimit);
 }
