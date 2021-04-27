@@ -85,7 +85,7 @@ public class UserController extends BaseController {
     }
 
     @GetMapping(path="/me")
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Private.class)
     public User getUserProfile(HttpSession session) {
 
         Long loggedUserId = getLoggedUser(session);
@@ -166,6 +166,24 @@ public class UserController extends BaseController {
         getLoggedUser(session);
 
         return userService.getUserId(username);
+    }
+
+    @GetMapping(path="/following/{id}")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowingOfUser(HttpSession session,@PathVariable("id") Long followingId) {
+
+        getLoggedUser(session);
+
+        return userService.getFollowing(followingId);
+    }
+
+    @GetMapping(path="/followers/{id}")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowersOfUser(HttpSession session,@PathVariable("id") Long followersId) {
+
+        getLoggedUser(session);
+
+        return userService.getFollowers(followersId);
     }
 
     static class LoginUser {
