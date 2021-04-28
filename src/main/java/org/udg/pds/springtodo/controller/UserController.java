@@ -85,6 +85,15 @@ public class UserController extends BaseController {
         return userService.getUserProfile(loggedUserId);
     }
 
+    @PutMapping(path="/me", consumes = "application/json")
+    public String updateUserMe(HttpSession session, @Valid  @RequestBody UpdateUser u) {
+
+        //checkNotLoggedIn(session);
+        Long loggedUserId = getLoggedUser(session);
+        userService.updateUserMe(loggedUserId, u.username, u.description, u.phoneNumber, u.imageUrl);
+        return BaseController.OK_MESSAGE;
+    }
+
     @GetMapping(path="/me/equipment")
     @JsonView(Views.Complete.class)
     public User getUserEquipment(HttpSession session) {
@@ -156,6 +165,18 @@ public class UserController extends BaseController {
         public String password;
         @NotNull
         public Integer phoneNumber;
+    }
+
+    //classe per a que spring sapiga com mapejar el user que li arriba al body
+    static class UpdateUser{
+        @NotNull
+        public String username;
+        @NotNull
+        public String description;
+        @NotNull
+        public Integer phoneNumber;
+        @NotNull
+        public String imageUrl;
     }
 
     static class ID {
