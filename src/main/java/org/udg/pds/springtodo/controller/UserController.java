@@ -128,7 +128,7 @@ public class UserController extends BaseController {
 
     }
 
-    @PostMapping(path="/unfollow/{id}")
+    @DeleteMapping(path="/unfollow/{id}")
     public String unFollow(HttpSession session, @PathVariable("id") Long unfollowId) {
 
         Long loggedUserId = getLoggedUser(session);
