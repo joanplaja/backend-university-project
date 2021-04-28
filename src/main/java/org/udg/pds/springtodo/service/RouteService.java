@@ -6,11 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.RouteRepository;
-import org.udg.pds.springtodo.repository.PointRepository;
 import org.udg.pds.springtodo.repository.WorkoutRepository;
 
-import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +54,10 @@ public class RouteService {
         } catch (Exception ex) {
             throw new ServiceException(ex.getMessage());
         }
+    }
+    @Transactional
+    public List<Route> getNearRoutes(Double latitude, Double longitude, Integer kmLimit){
+        return routeRepository.findNearRoutes(latitude,longitude,kmLimit);
     }
 
 }

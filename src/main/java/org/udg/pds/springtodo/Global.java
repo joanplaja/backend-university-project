@@ -108,25 +108,32 @@ public class Global {
         if (activeProfile.equals("dev")) {
             logger.info("Starting populating database ...");
 
-            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658);
+            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658, "John", "Doe", 22);
             IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
             Tag tag = tagService.addTag("ATag", "Just a tag");
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789);
-            IdObject w1 = workoutService.addWorkout("running", user.getId(), new Date());
-            //workoutService.addWorkout("cycling", user.getId(), new Date());
-            IdObject w2 = workoutService.addWorkout("hiking", user2.getId(), new Date());
-            //workoutService.addWorkout("walking", user2.getId(), new Date());
-            IdObject routeId1 = routeService.addRoute(user.getId(), w1.getId(),10.0,10.0);
-            IdObject routeId2 = routeService.addRoute(user2.getId(), w2.getId(),10.0,10.0);
+            User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789, "Tom", "Doe", 26);
+            IdObject w1 = workoutService.addWorkoutWithRoute("running", user.getId(), 10.0,10.0);
+            IdObject w2 = workoutService.addWorkoutWithRoute("hiking", user.getId(), 20.0,20.0);
+            IdObject w3 = workoutService.addWorkoutWithRoute("cycling", user2.getId(), 30.0,30.0);
+            IdObject w4 = workoutService.addWorkoutWithRoute("walking", user2.getId(), 40.0,40.0);
             ArrayList<Point> points = new ArrayList<>();
             ArrayList<Point> points2 = new ArrayList<>();
-            points.add(new Point(20.0,20.0));
-            points2.add(new Point(20.0, 20.0));
-            pointService.addPoints(user.getId(), routeId1.getId(), points);
-            pointService.addPoints(user2.getId(), routeId2.getId(), points2);
+            ArrayList<Point> points3 = new ArrayList<>();
+            ArrayList<Point> points4 = new ArrayList<>();
+            for (int i = 1; i <= 5; i++) {
+                Double pointToAdd = 10.0 + i;
+                points.add(new Point(pointToAdd,pointToAdd));
+                points2.add(new Point(pointToAdd, pointToAdd));
+                points3.add(new Point(pointToAdd, pointToAdd));
+                points4.add(new Point(pointToAdd, pointToAdd));
+            }
+            pointService.addPoints(user.getId(), w1.getId(), points);
+            pointService.addPoints(user.getId(), w2.getId(), points2);
+            pointService.addPoints(user2.getId(), w3.getId(), points3);
+            pointService.addPoints(user2.getId(), w4.getId(), points4);
         }
     }
 

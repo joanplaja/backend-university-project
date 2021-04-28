@@ -1,5 +1,6 @@
 package org.udg.pds.springtodo.repository;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +10,7 @@ import org.udg.pds.springtodo.entity.User;
 import java.util.List;
 
 @Component
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long>, JpaSpecificationExecutor<User> {
     @Query("SELECT u FROM users u WHERE u.username=:username")
     List<User> findByUsername(@Param("username") String username);
 

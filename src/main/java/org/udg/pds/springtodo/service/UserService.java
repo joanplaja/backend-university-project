@@ -1,6 +1,7 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -31,6 +32,10 @@ public class UserService {
 
         List<User> uc = userRepository.findByUsername(username);
 
+        if(uc.size() == 0){
+            uc = userRepository.findByEmail(username);
+        }
+
         if (uc.size() == 0) throw new ServiceException("User does not exists");
 
         User u = uc.get(0);
@@ -41,7 +46,7 @@ public class UserService {
             throw new ServiceException("Password does not match");
     }
 
-    public User register(String username, String email, String password, Integer phoneNumber) {
+    public User register(String username, String email, String password, Integer phoneNumber, String firstName, String lastName, Integer age) {
 
         List<User> uEmail = userRepository.findByEmail(email);
         if (uEmail.size() > 0)
@@ -52,7 +57,7 @@ public class UserService {
         if (uUsername.size() > 0)
             throw new ServiceException("Username already exists");
 
-        User nu = new User(username, email, password, phoneNumber);
+        User nu = new User(username, email, password, phoneNumber, firstName, lastName, age);
         userRepository.save(nu);
         return nu;
     }
@@ -104,12 +109,14 @@ public class UserService {
 
             User following = this.getUser(followingId);
 
-            user.Follow(following);
+            if (!user.AlreadyFollowing(following)){
+                user.Follow(following);
 
-            following.addFollower(user);
+                following.addFollower(user);
 
-            userRepository.save(user);
-            userRepository.save(following);
+                userRepository.save(user);
+                userRepository.save(following);
+            }
         } catch (Exception ex) {
             // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
             // We catch the normal exception and then transform it in a ServiceException
@@ -143,6 +150,16 @@ public class UserService {
 
     public Collection<User> getFollowers(Long id) {
         return this.getUser(id).getFollowers();
+    }
+
+    public List <User> findUser(Specification<User> spec){
+        return userRepository.findAll(spec);
+    }
+
+    public Long getUserId(String username){
+        List<User> uc = userRepository.findByUsername(username);
+        User u = uc.get(0);
+        return u.getId();
     }
 
 }
