@@ -144,10 +144,10 @@ public class User implements Serializable {
 
 
 
-    @JsonIgnore
+   /* @JsonIgnore
     public String getPassword() {
         return password;
-    }
+    }*/
 
   @JsonView(Views.Public.class)
   public String getImageUrl() {
