@@ -55,8 +55,10 @@ public class User implements Serializable {
     @NotNull
     private Integer phoneNumber;
 
-    @NotNull
-    private String description = "Hey! I'm using Avarst";
+  private String imageUrl;
+
+  @NotNull
+  private String description = "Hey! I'm using Avarst";
 
     @NotNull
     private String firstName;
@@ -102,16 +104,29 @@ public class User implements Serializable {
         return username;
     }
 
-    @JsonView(Views.Public.class)
-    public Integer getPhoneNumber() {
+  @JsonView(Views.Public.class)
+  public void setUsername(String newUsername) { this.username = newUsername;  }
+
+  @JsonView(Views.Public.class)
+  public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-    @JsonView(Views.Public.class)
-    public String getDescription() {
+  @JsonView(Views.Public.class)
+  public void setPhoneNumber(Integer newPhoneNumber) { this.phoneNumber = newPhoneNumber;  }
+
+  @JsonView(Views.Public.class)
+  public String getDescription() {
         return description;
     }
 
+  @JsonView(Views.Public.class)
+  public void setDescription(String newDescription) { this.description = newDescription;  }
+
+  @JsonIgnore
+  public String getPassword() {
+    return password;
+  }
     @JsonView(Views.Public.class)
     public String getFirstName() {
         return firstName;
@@ -134,14 +149,23 @@ public class User implements Serializable {
         return password;
     }
 
-    @JsonView(Views.Complete.class)
-    public Collection<Task> getTasks() {
-        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
-        // that you have to query the object (calling size(), for example) to get the list initialized
-        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
-        tasks.size();
-        return tasks;
+  @JsonView(Views.Public.class)
+  public String getImageUrl() {
+        return imageUrl;
     }
+
+  @JsonView(Views.Public.class)
+  public void setImageUrl(String newImageUrl) { this.imageUrl = newImageUrl; }
+
+
+    @JsonView(Views.Complete.class)
+  public Collection<Task> getTasks() {
+    // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
+    // that you have to query the object (calling size(), for example) to get the list initialized
+    // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+    tasks.size();
+    return tasks;
+  }
 
     @JsonView(Views.Complete.class)
     public Collection<Workout> getWorkouts() {
@@ -194,4 +218,3 @@ public class User implements Serializable {
         return following;
     }
 }
-

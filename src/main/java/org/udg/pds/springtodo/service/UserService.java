@@ -77,6 +77,23 @@ public class UserService {
         return u;
     }
 
+    public void updateUserMe(Long userId, String newUsername, String newDescription, Integer newPhoneNumber, String newImageUrl) {
+        try {
+            User updatingUser = this.getUser(userId);
+
+            updatingUser.setUsername(newUsername);
+            updatingUser.setDescription(newDescription);
+            updatingUser.setPhoneNumber(newPhoneNumber);
+            updatingUser.setImageUrl(newImageUrl);
+
+            userRepository.save(updatingUser);
+        }catch (Exception ex) {
+            // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
+            // We catch the normal exception and then transform it in a ServiceException
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
     public User getUserEquipment(Long loggedUserId) {
         //HEM DE BUSCAR ELS EQUIPMENT, SIMILAR A BUSCAR ELS TAG DE LES TASKS
         User u = this.getUser(loggedUserId);
