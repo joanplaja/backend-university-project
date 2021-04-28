@@ -172,6 +172,12 @@ public class User implements Serializable {
         following.add(u);
     }
 
+    public Boolean AlreadyFollowing(User u){
+        if (following.contains(u))
+            return true;
+        else return false;
+    }
+
     public void Unfollow(User u) {
         following.remove(u);
     }
