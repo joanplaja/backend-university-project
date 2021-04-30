@@ -9,6 +9,7 @@ import org.udg.pds.springtodo.repository.PostRepository;
 import org.udg.pds.springtodo.repository.RouteRepository;
 import org.udg.pds.springtodo.repository.WorkoutRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,26 +42,11 @@ public class PostService {
         }
     }
 
-    /*
-    public Route getRoute(Long workoutId, Long userId) {
-        Optional<Workout> w = workoutRepository.findById(workoutId);
-        if (!w.isPresent()) throw new ServiceException("Workout does not exist");
-        if (w.get().getUser().getId() != userId)
-            throw new ServiceException("User does not have this workout");
-        Workout workout = w.get();
-        Route route = workout.getRoute();
-        if(route == null) {
-            throw new ServiceException("This workout does not have a route");
-        }
-        return route;
+    //Aquest metode ha de retornar els posts de l'usuari i tambe els posts dels amics de l'usuari
+    public List<Post> getPosts(Long userId) {
+        List<Post> tots = (List<Post>) postRepository.findAll();
+        return tots;
     }
-
-
-    @Transactional
-    public List<Route> getNearRoutes(Double latitude, Double longitude, Integer kmLimit){
-        return routeRepository.findNearRoutes(latitude,longitude,kmLimit);
-    }
-    */
 
 
 }

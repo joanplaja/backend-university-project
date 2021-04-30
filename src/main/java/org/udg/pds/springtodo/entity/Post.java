@@ -38,7 +38,7 @@ public class Post implements Serializable {
     @JoinColumn(name = "fk_workout", referencedColumnName = "id")
     private Workout workout;
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Private.class)
     public Workout getWorkout() { return workout; }
 
     public void setWorkout(Workout workout) {
