@@ -73,7 +73,7 @@ public class Route implements Serializable {
         return initialLongitude;
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Private.class)
     public Collection<Point> getPoints() {
         // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
         // that you have to query the object (calling size(), for example) to get the list initialized

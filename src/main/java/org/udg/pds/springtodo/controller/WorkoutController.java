@@ -36,6 +36,7 @@ public class WorkoutController extends BaseController {
     PointService pointService;
 
     @GetMapping(path="/{id}")
+    @JsonView(Views.Private.class)
     public Workout getWorkout(HttpSession session,
                         @PathVariable("id") Long id) {
         Long userId = getLoggedUser(session);
@@ -44,7 +45,7 @@ public class WorkoutController extends BaseController {
     }
 
     @GetMapping
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Collection<Workout> listAllWorkouts(HttpSession session,
                                             @RequestParam(value = "from", required = false) Date from) {
         Long userId = getLoggedUser(session);

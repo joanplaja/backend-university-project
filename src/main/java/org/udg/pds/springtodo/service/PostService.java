@@ -45,6 +45,8 @@ public class PostService {
     //Aquest metode ha de retornar els posts de l'usuari i tambe els posts dels amics de l'usuari
     public List<Post> getPosts(Long userId) {
         List<Post> tots = (List<Post>) postRepository.findAll();
+
+        //Aqui s'hauria de fer ara el control de que nomes es retornin aquells que son de l'usuari o d'algun amic seu
         return tots;
     }
 

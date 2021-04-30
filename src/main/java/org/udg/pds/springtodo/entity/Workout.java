@@ -52,7 +52,7 @@ public class Workout implements Serializable {
     @OneToOne(mappedBy = "workout")
     private Post post;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }
@@ -70,7 +70,7 @@ public class Workout implements Serializable {
         this.user = user;
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Private.class)
     public Route getRoute() {
         return route;
     }
@@ -84,7 +84,7 @@ public class Workout implements Serializable {
 
     public void setPost(Post post) { this.post = post; }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public String getType() {
         return type;
     }
