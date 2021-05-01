@@ -36,6 +36,7 @@ public class WorkoutController extends BaseController {
     PointService pointService;
 
     @GetMapping(path="/{id}")
+    @JsonView(Views.Private.class)
     public Workout getWorkout(HttpSession session,
                         @PathVariable("id") Long id) {
         Long userId = getLoggedUser(session);
@@ -44,7 +45,7 @@ public class WorkoutController extends BaseController {
     }
 
     @GetMapping
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Collection<Workout> listAllWorkouts(HttpSession session,
                                             @RequestParam(value = "from", required = false) Date from) {
         Long userId = getLoggedUser(session);
@@ -106,25 +107,3 @@ public class WorkoutController extends BaseController {
     }
 }
 
-
-    /*
-    Comento aquests perque no s'haurien d'utilitzar
-
-    @GetMapping(path = "/{id}/routes")
-    @JsonView(Views.Complete.class)
-    public Route getWorkoutRoute(HttpSession session, @PathVariable("id") Long workoutId) {
-        Long userId = getLoggedUser(session);
-        Route r = routeService.getRoute(workoutId, userId);
-        return r;
-    }
-
-
-    @PostMapping(path = "/{id}/routes", consumes = "application/json")
-    public IdObject addRoute(HttpSession session, @Valid @RequestBody R_Route route, @PathVariable("id") Long workoutId) {
-
-        Long userId = getLoggedUser(session);
-
-        return routeService.addRoute(userId, workoutId, route.initialLatitude, route.initialLongitude);
-    }
-
-     */

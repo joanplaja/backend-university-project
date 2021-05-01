@@ -49,7 +49,10 @@ public class Workout implements Serializable {
     @JoinColumn(name = "fk_route", referencedColumnName = "id")
     private Route route;
 
-    @JsonView(Views.Private.class)
+    @OneToOne(mappedBy = "workout")
+    private Post post;
+
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }
@@ -58,7 +61,8 @@ public class Workout implements Serializable {
         this.id = id;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonView(Views.Private.class)
     public User getUser() {
         return user;
     }
@@ -67,7 +71,7 @@ public class Workout implements Serializable {
         this.user = user;
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Private.class)
     public Route getRoute() {
         return route;
     }
@@ -76,7 +80,12 @@ public class Workout implements Serializable {
         this.route = route;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Complete.class)
+    public Post getPost() { return post; }
+
+    public void setPost(Post post) { this.post = post; }
+
+    @JsonView(Views.Public.class)
     public String getType() {
         return type;
     }

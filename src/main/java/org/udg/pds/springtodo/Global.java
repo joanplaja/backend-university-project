@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.udg.pds.springtodo.entity.IdObject;
-import org.udg.pds.springtodo.entity.Point;
-import org.udg.pds.springtodo.entity.Tag;
-import org.udg.pds.springtodo.entity.User;
+import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.TagRepository;
 import org.udg.pds.springtodo.repository.TaskRepository;
 import org.udg.pds.springtodo.repository.UserRepository;
@@ -45,7 +42,7 @@ public class Global {
 
     @Autowired
     private
-    RouteService routeService;
+    PostService postService;
 
     @Autowired
     private
@@ -134,6 +131,9 @@ public class Global {
             pointService.addPoints(user.getId(), w2.getId(), points2);
             pointService.addPoints(user2.getId(), w3.getId(), points3);
             pointService.addPoints(user2.getId(), w4.getId(), points4);
+
+            postService.addPost(user.getId(), w1.getId(), "Morning run at the beach!", "");
+            postService.addPost(user2.getId(), w3.getId(), "Testing my brand new bike!", "");
         }
     }
 
