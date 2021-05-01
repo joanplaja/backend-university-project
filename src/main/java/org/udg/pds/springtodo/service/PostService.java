@@ -32,6 +32,11 @@ public class PostService {
     public PostRepository crud(){ return postRepository; }
 
     @Transactional
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
+    }
+
+    @Transactional
     public IdObject addPost(Long userId, Long workoutId, String description, String imageUrl) {
         try {
             Workout workout = workoutService.getWorkout(userId, workoutId);

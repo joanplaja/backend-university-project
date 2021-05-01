@@ -47,7 +47,7 @@ public class PostController extends BaseController {
     public String deleteWorkout(HttpSession session,
                                 @PathVariable("id") Long postId) {
         getLoggedUser(session);
-        postService.crud().deleteById(postId);
+        postService.deletePost(postId);
         return BaseController.OK_MESSAGE;
     }
 

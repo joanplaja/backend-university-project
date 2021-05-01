@@ -29,6 +29,11 @@ public class WorkoutService {
         return workoutRepository;
     }
 
+    @Transactional
+    public void deleteWorkout(Long workoutId) {
+        workoutRepository.deleteById(workoutId);
+    }
+
     public Collection<Workout> getWorkouts(Long userId) {
         return userService.getUser(userId).getWorkouts();
     }
