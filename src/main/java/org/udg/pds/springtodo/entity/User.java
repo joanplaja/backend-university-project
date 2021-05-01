@@ -85,7 +85,7 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "following")
     private Collection<User> followers;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }

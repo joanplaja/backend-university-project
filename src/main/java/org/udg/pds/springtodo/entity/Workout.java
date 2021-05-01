@@ -61,7 +61,8 @@ public class Workout implements Serializable {
         this.id = id;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonView(Views.Private.class)
     public User getUser() {
         return user;
     }

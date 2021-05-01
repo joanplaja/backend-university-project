@@ -35,4 +35,20 @@ public class PostController extends BaseController {
         return postService.getPosts(userId);
     }
 
+    @PostMapping(consumes = "application/json")
+    public IdObject addPost(HttpSession session, @Valid @RequestBody R_Post post) {
+        Long userId = getLoggedUser(session);
+
+        IdObject postId = postService.addPost(userId, post.workoutId, post.description, post.imageUrl);
+        return postId;
+    }
+
+    static class R_Post {
+        @NotNull
+        public Long workoutId;
+
+        public String description;
+
+        public String imageUrl;
+    }
 }

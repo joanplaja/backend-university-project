@@ -9,6 +9,7 @@ import org.udg.pds.springtodo.repository.PostRepository;
 import org.udg.pds.springtodo.repository.RouteRepository;
 import org.udg.pds.springtodo.repository.WorkoutRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,9 @@ public class PostService {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     WorkoutRepository workoutRepository;
@@ -42,12 +46,27 @@ public class PostService {
         }
     }
 
-    //Aquest metode ha de retornar els posts de l'usuari i tambe els posts dels amics de l'usuari
     public List<Post> getPosts(Long userId) {
         List<Post> tots = (List<Post>) postRepository.findAll();
+        User user = userService.getUser(userId);
+        List<User> following = (List<User>) user.getFollowing();
 
-        //Aqui s'hauria de fer ara el control de que nomes es retornin aquells que son de l'usuari o d'algun amic seu
-        return tots;
+        List<Post> feed = new ArrayList<>();
+        for (Post p : tots) {
+            Long postOwner = p.getWorkout().getUser().getId();
+            if(postOwner == userId) {
+                feed.add(p);
+                continue;
+            }
+            for (User u : following) {
+                Long friendId = u.getId();
+                if (postOwner == friendId) {
+                    feed.add(p);
+                    break;
+                }
+            }
+        }
+        return feed;
     }
 
 
