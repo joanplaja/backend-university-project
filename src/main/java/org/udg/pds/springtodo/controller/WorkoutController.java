@@ -84,7 +84,7 @@ public class WorkoutController extends BaseController {
     public String deleteWorkout(HttpSession session,
                              @PathVariable("id") Long workoutId) {
         getLoggedUser(session);
-        workoutService.crud().deleteById(workoutId);
+        workoutService.deleteWorkout(workoutId);
         return BaseController.OK_MESSAGE;
     }
 

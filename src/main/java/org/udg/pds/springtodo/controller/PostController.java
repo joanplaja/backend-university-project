@@ -43,6 +43,14 @@ public class PostController extends BaseController {
         return postId;
     }
 
+    @DeleteMapping(path="/{id}")
+    public String deleteWorkout(HttpSession session,
+                                @PathVariable("id") Long postId) {
+        getLoggedUser(session);
+        postService.deletePost(postId);
+        return BaseController.OK_MESSAGE;
+    }
+
     static class R_Post {
         @NotNull
         public Long workoutId;
