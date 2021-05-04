@@ -1,23 +1,36 @@
 package org.udg.pds.springtodo.service;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.reflect.TypeToken;
+import okhttp3.*;
+import okio.BufferedSink;
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.Tag;
 import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;
 
+import javax.annotation.Nullable;
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 @Service
 public class UserService {
 
@@ -60,6 +73,65 @@ public class UserService {
         User nu = new User(username, email, password, phoneNumber, firstName, lastName, age);
         userRepository.save(nu);
         return nu;
+    }
+
+    public User registerFacebook(String username, String email, String password, Integer phoneNumber, String firstName, String lastName, Integer age, String  facebookToken,Long facebookId) {
+
+        List<User> uEmail = userRepository.findByEmail(email);
+        if (uEmail.size() > 0)
+            throw new ServiceException("Email already exist");
+
+
+        List<User> uUsername = userRepository.findByUsername(username);
+        if (uUsername.size() > 0)
+            throw new ServiceException("Username already exists");
+
+        User nu = new User(username, email, password, phoneNumber, firstName, lastName, age,facebookToken,facebookId);
+        userRepository.save(nu);
+        return nu;
+    }
+
+    public User signInFacebook(Long facebookId, String  facebookToken) {
+
+        User uFacebook = getUserFacebook(facebookId);
+        if(uFacebook == null)
+            throw new ServiceException(String.format("User with facebook id = % dos not exists", facebookId));
+
+        //altrament comprovem que el token es correcte
+        final String uri = "https://graph.facebook.com/me?access_token="+facebookToken;
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri,String.class);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        ObjectMapper mapper = new ObjectMapper();
+        try
+        {
+            map = (HashMap<String, Object>) mapper.readValue(result, new TypeReference<Map<String, Object>>(){});
+        }
+        catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("id:"+map.get("id"));
+        Long requestId = Long.valueOf(map.get("id").toString()).longValue();
+        System.out.println("id:"+facebookId);
+        if(map.get("id").equals(facebookId.toString())) {
+            //update token
+            return uFacebook;
+        }
+        else return null;
+
+    }
+
+    public User getUserFacebook(Long facebookId){
+        User uFacebook = userRepository.findByFacebookId(facebookId);
+        //Si no existeix el facebook Id retornem null
+        if(uFacebook == null) return null;
+        else return uFacebook;
     }
 
     public User getUser(Long id) {
