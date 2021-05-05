@@ -1,11 +1,13 @@
 package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
+import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.entity.UserSpecificationsBuilder;
 import org.udg.pds.springtodo.entity.Views;
@@ -68,6 +70,29 @@ public class UserController extends BaseController {
         userService.crud().deleteById(userId);
         session.removeAttribute("simpleapp_auth_id");
 
+        return BaseController.OK_MESSAGE;
+    }
+
+    @PostMapping(path="/signInFacebook", consumes = "application/json")
+    public User sigInFacebook(HttpSession session,  @Valid  @RequestBody SignInUserFacebook ruFacebook) {
+
+        checkNotLoggedIn(session);
+
+        if(userService.getUserFacebook(ruFacebook.facebookId) == null)
+            throw new ServiceException("Facebook id does not exists");
+
+        User u = userService.signInFacebook(ruFacebook.facebookId, ruFacebook.facebookToken);
+        session.setAttribute("simpleapp_auth_id", u.getId());
+        return u;
+    }
+
+    @PostMapping(path="/registerFacebook", consumes = "application/json")
+    public String registerWithFacebook(HttpSession session,  @Valid  @RequestBody RegisterUserFacebook ruFacebook) {
+
+        checkNotLoggedIn(session);
+        //check if user email exists if it does update the facebook token
+        //Otherwhise create the new user with facebook token
+        userService.registerFacebook(ruFacebook.username, ruFacebook.email, ruFacebook.password, ruFacebook.phoneNumber, ruFacebook.firstName, ruFacebook.lastName, ruFacebook.age, ruFacebook.facebookToken, ruFacebook.facebookId);
         return BaseController.OK_MESSAGE;
     }
 
@@ -222,6 +247,34 @@ public class UserController extends BaseController {
         public String lastName;
         @NotNull
         public Integer age;
+    }
+
+    static class RegisterUserFacebook {
+        @NotNull
+        public String username;
+        @NotNull
+        public String email;
+        @NotNull
+        public String password;
+        @NotNull
+        public Integer phoneNumber;
+        @NotNull
+        public String firstName;
+        @NotNull
+        public String lastName;
+        @NotNull
+        public Integer age;
+        @NotNull
+        public Long facebookId;
+        @NotNull
+        public String facebookToken;
+    }
+
+    static class SignInUserFacebook {
+        @NotNull
+        public Long facebookId;
+        @NotNull
+        public String facebookToken;
     }
 
     //classe per a que spring sapiga com mapejar el user que li arriba al body
