@@ -34,8 +34,7 @@ public class Post implements Serializable {
 
     private String imageUrl;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_workout", referencedColumnName = "id")
+    @OneToOne
     private Workout workout;
 
     @JsonView(Views.Private.class)

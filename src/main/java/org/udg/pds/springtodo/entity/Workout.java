@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.checkerframework.checker.units.qual.C;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 
@@ -49,7 +50,8 @@ public class Workout implements Serializable {
     @JoinColumn(name = "fk_route", referencedColumnName = "id")
     private Route route;
 
-    @OneToOne(mappedBy = "workout")
+
+    @OneToOne(cascade = CascadeType.REMOVE, mappedBy = "workout")
     private Post post;
 
     @JsonView(Views.Public.class)

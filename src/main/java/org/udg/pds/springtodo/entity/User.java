@@ -38,6 +38,23 @@ public class User implements Serializable {
         this.equipments = new ArrayList<>();
         this.following = new ArrayList<>();
         this.followers = new ArrayList<>();
+        this.facebookToken = null;
+        this.facebookId = null;
+    }
+    public User(String username, String email,String password, Integer phoneNumber, String firstName, String lastName, Integer age,String facebookToken, Long facebookId) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.tasks = new ArrayList<>();
+        this.workouts = new ArrayList<>();
+        this.following = new ArrayList<>();
+        this.followers = new ArrayList<>();
+        this.facebookToken = facebookToken;
+        this.facebookId = facebookId;
     }
 
     @Id
@@ -70,6 +87,10 @@ public class User implements Serializable {
     @NotNull
     private Integer age;
 
+    private  Long facebookId;
+
+    private String facebookToken;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Task> tasks;
@@ -96,6 +117,13 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public void setFacebookId(Long facebookId) {
+        this.facebookId = facebookId;
+    }
+
+    public void setFacebookToken(String facebookToken) {
+        this.facebookToken = facebookToken;
     }
 
     @JsonView(Views.Private.class)
