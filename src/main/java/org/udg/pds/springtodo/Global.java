@@ -128,10 +128,10 @@ public class Global {
             ArrayList<Point> points4 = new ArrayList<>();
             for (int i = 1; i <= 5; i++) {
                 Double pointToAdd = 10.0 + i;
-                points.add(new Point(pointToAdd,pointToAdd));
-                points2.add(new Point(pointToAdd, pointToAdd));
-                points3.add(new Point(pointToAdd, pointToAdd));
-                points4.add(new Point(pointToAdd, pointToAdd));
+                points.add(new Point(pointToAdd,pointToAdd, 2.0, 2.0, 2.0));
+                points2.add(new Point(pointToAdd,pointToAdd, 2.0, 2.0, 2.0));
+                points3.add(new Point(pointToAdd,pointToAdd, 2.0, 2.0, 2.0));
+                points4.add(new Point(pointToAdd,pointToAdd, 2.0, 2.0, 2.0));
             }
             pointService.addPoints(user.getId(), w1.getId(), points);
             pointService.addPoints(user.getId(), w2.getId(), points2);
