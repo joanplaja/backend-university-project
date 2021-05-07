@@ -29,8 +29,8 @@ public class Route implements Serializable {
     }
 
     public Route(Point initialPoint) {
-        this.initialLatitude = initialPoint.latitude();
-        this.initialLongitude = initialPoint.longitude();
+        this.initialLatitude = initialPoint.getLatitude();
+        this.initialLongitude = initialPoint.getLongitude();
         this.points = new ArrayList<>();
     }
 

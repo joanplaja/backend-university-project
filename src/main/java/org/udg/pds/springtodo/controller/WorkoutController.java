@@ -66,8 +66,9 @@ public class WorkoutController extends BaseController {
 
         Long userId = getLoggedUser(session);
         ArrayList<Point> newPoints = new ArrayList<>();
-        for(Double[] coordinate : points) {
-            Point p = new Point(coordinate[0], coordinate[1]);
+        for(Double[] point : points) {
+            //ARREGLAR
+            Point p = new Point(point[0], point[1], point[2], point[3], point[4]);
             newPoints.add(p);
         }
         boolean res = pointService.addPoints(userId, workoutId, newPoints);

@@ -45,7 +45,7 @@ public class RouteService {
     public IdObject addRoute(Long userId, Long workoutId, Double initialLatitude, Double initialLongitude ) {
         try {
             Workout workout = workoutService.getWorkout(userId, workoutId);
-            Route route = new Route(new Point(initialLatitude, initialLongitude));
+            Route route = new Route(new Point(initialLatitude, initialLongitude, 0.0, 0.0, 0.0));
             workout.setRoute(route);
             route.setWorkout(workout);
             routeRepository.save(route);
