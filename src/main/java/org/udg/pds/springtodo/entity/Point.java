@@ -26,9 +26,12 @@ public class Point implements Serializable {
     public Point() {
     }
 
-    public Point(Double latitude, Double longitude) {
+    public Point(Double latitude, Double longitude, Double timeDiff, Double distanceDiff, Double velocity) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.timeDiff = timeDiff;
+        this.distanceDiff = distanceDiff;
+        this.velocity = velocity;
     }
 
     // This tells JAXB that this field can be used as ID
@@ -41,6 +44,12 @@ public class Point implements Serializable {
     private Double latitude;
 
     private Double longitude;
+
+    private Double timeDiff;
+
+    private Double distanceDiff;
+
+    private Double velocity;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_route")
@@ -59,13 +68,25 @@ public class Point implements Serializable {
     }
 
     @JsonView(Views.Private.class)
-    public Double latitude() {
-        return latitude;
-    }
+    public Double getLatitude() { return latitude; }
 
     @JsonView(Views.Private.class)
-    public Double longitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
+    @JsonView(Views.Private.class)
+    public Double getTimeDiff() {
+        return timeDiff;
+    }
+
+    @JsonView(Views.Private.class)
+    public Double getDistanceDiff() {
+        return distanceDiff;
+    }
+
+    @JsonView(Views.Private.class)
+    public Double getVelocity() {
+        return velocity;
+    }
 }
