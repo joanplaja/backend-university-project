@@ -30,6 +30,11 @@ public class EquipmentService {
         return userService.getUser(userId).getEquipments();
     }
 
+    @Transactional
+    public void deleteEquipment(Long equipmentId) {
+        equipmentRepository.deleteById(equipmentId);
+    }
+
     public Equipment getEquipment(Long userId, Long id) {
         Optional<Equipment> e = equipmentRepository.findById(id);
         if (!e.isPresent()) throw new ServiceException("Equipment does not exist");

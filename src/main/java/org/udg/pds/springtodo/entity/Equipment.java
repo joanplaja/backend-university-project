@@ -54,7 +54,7 @@ public class Equipment implements Serializable {
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }
@@ -90,7 +90,7 @@ public class Equipment implements Serializable {
         this.description = description;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public String getImageUrl() {
         return imageUrl;
     }

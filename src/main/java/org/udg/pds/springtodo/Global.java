@@ -115,8 +115,8 @@ public class Global {
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            IdObject eq1 = equipmentService.addEquipment("Nike Platinum", "This shoes are so confortable and they are not expensive!", null, "https://www.nike.com/es/", user.getId());
-            IdObject eq2 = equipmentService.addEquipment("Bike Leaf Green", "I really recommend to buy that bike. After 3 years it looks like it's still new!", null, "https://www.mountainbike.es/", user.getId());
+            IdObject eq1 = equipmentService.addEquipment("Nike Platinum", "This shoes are so confortable and they are not expensive!", "http://localhost:8080/images/0cd2093b-b12e-47e3-a96a-965cd6ab4136.jpg", "https://www.nike.com/es/", user.getId());
+            IdObject eq2 = equipmentService.addEquipment("Bike Leaf Green", "I really recommend to buy that bike. After 3 years it looks like it's still new!", "http://localhost:8080/images/0cd2093b-b12e-47e3-a96a-965cd6ab4136.jpg", "https://www.mountainbike.es/", user.getId());
             User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789, "Tom", "Doe", 26);
             IdObject w1 = workoutService.addWorkoutWithRoute("running", user.getId(), 10.0,10.0);
             IdObject w2 = workoutService.addWorkoutWithRoute("hiking", user.getId(), 20.0,20.0);
