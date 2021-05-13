@@ -20,4 +20,7 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
     @Query("SELECT u FROM users u WHERE u.facebookId=:facebookId")
     User findByFacebookId(@Param("facebookId") Long facebookId);
 
+    @Query(value = "SELECT * FROM users u WHERE u.facebookId IN ( :facebookIds ) AND u.id NOT IN ( SELECT r.following_id FROM relation r LEFT JOIN users us ON r.user_id = us.id WHERE us.id = :id )",nativeQuery = true)
+    List<User> findFacebookFriends(@Param("id") Long id,@Param("facebookIds") String facebookIds);
+
 }

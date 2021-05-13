@@ -180,6 +180,8 @@ public class UserController extends BaseController {
         return userService.getFollowers(loggedUserId);
     }
 
+
+
     @RequestMapping(method = RequestMethod.GET)
     @JsonView(Views.Public.class)
     public List<User> search(@RequestParam(value = "search") String search) {
@@ -192,6 +194,19 @@ public class UserController extends BaseController {
 
         Specification<User> spec = builder.build();
         return userService.findUser(spec);
+    }
+
+    @PostMapping(path="/findFacebookFriends")
+    public List<User> findFacebookFriends(HttpSession session, @Valid  @RequestBody FindFacebookFriends fFacebookFreinds) {
+
+        Long loggedUserId = getLoggedUser(session);
+        String facebookIds ="";
+        for(int i = 0; i<fFacebookFreinds.facebookIds.length;i++){
+            if (i==0)facebookIds+=fFacebookFreinds.facebookIds[i];
+            else facebookIds+=","+fFacebookFreinds.facebookIds[i];
+        }
+        return userService.findFacebookFriends(loggedUserId, facebookIds);
+
     }
 
     @GetMapping(path="/id/{username}")
@@ -218,6 +233,12 @@ public class UserController extends BaseController {
         getLoggedUser(session);
 
         return userService.getFollowers(followersId);
+    }
+
+    static class FindFacebookFriends {
+        @NotNull
+        public String[] facebookIds;
+
     }
 
     static class LoginUser {

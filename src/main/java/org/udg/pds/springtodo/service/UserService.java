@@ -216,6 +216,10 @@ public class UserService {
         }
     }
 
+    public List<User> findFacebookFriends(Long id,String facebookIds) {
+        return userRepository.findFacebookFriends(id,facebookIds);
+    }
+
     public Collection<User> getFollowing(Long id) {
         return this.getUser(id).getFollowing();
     }
