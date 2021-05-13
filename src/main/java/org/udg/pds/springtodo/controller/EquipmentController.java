@@ -58,7 +58,7 @@ public class EquipmentController extends BaseController {
     public String deleteEquipment(HttpSession session,
                              @PathVariable("id") Long equipmentId) {
         getLoggedUser(session);
-        equipmentService.crud().deleteById(equipmentId);
+        equipmentService.deleteEquipment(equipmentId);
         return BaseController.OK_MESSAGE;
     }
 
@@ -72,6 +72,7 @@ public class EquipmentController extends BaseController {
 
         public String imageUrl;
 
+        @NotNull
         public String shopUrl;
 
     }
