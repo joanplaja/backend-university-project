@@ -29,6 +29,7 @@ import org.udg.pds.springtodo.repository.UserRepository;
 import javax.annotation.Nullable;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 @Service
@@ -216,8 +217,12 @@ public class UserService {
         }
     }
 
-    public List<User> findFacebookFriends(Long id,String facebookIds) {
+    public List<User> findFacebookFriends(Long id,List<String> facebookIds) {
         return userRepository.findFacebookFriends(id,facebookIds);
+    }
+
+    public List<User> findPhoneFriends(Long id,List<String> phoneNumbers) {
+        return userRepository.findPhoneFriends(id,phoneNumbers);
     }
 
     public Collection<User> getFollowing(Long id) {
