@@ -114,9 +114,9 @@ public class Global {
             logger.info("Starting populating database ...");
 
             userService.registerFacebook("primer_facebook","primer_jzuhqwa_test@tfbnw.net","123",722722722,"primer","facebook",22,"EAADLlO4sHwMBAAzdIZBrhcHnSZCErqZAnVworWrZCmZAnXQ5MfCArgKLZCdN7FZAWTsm5uzZBZAZAdfIe1oooA7Y8U67LakKKbHMJvV68kdMoFUkzGnXC3ZCdvgaog7lFU4FDkMikJGTZCoWKLP7u2TG1vqOOJOhLQRv1lS4og7ObnLoQDKog2w5lzYGh5K0iE9FZAgdOFAV1xAWMFVmWG7DHFxiY3APWNtpD7dJeo1lgzuIdbgZDZD",Long.parseLong("104486745147691"));
-            userService.registerFacebook("segon_facebook","segon_lughyxh_test@tfbnw.net","123",722722722,"segon","facebook",22,"EAADLlO4sHwMBAEqoqMAKfq8HyoUF75Low0ZC8cw2ykMQWLZBIYRIkf7EuXr4nUY1P0I2u5olhxss0KwMZCOJmyOapmS1BFQjEHKWnR8XSL6KjTbwLHwLkHaMcgMJ04fEE9SldfXT03itsZAzOemlWoHKyZCwyVVptThi0ZCOu2HlH1KOJrtLZByQZAHv2nmYX5iAT12guiLWes9KwHvznTgudqXmaKTXXSOZBog0rOhY7pLrSXbwxdZCS5",Long.parseLong("830415240907421"));
+            userService.registerFacebook("segon_facebook","segon_lughyxh_test@tfbnw.net","123",629792276,"segon","facebook",22,"EAADLlO4sHwMBAEqoqMAKfq8HyoUF75Low0ZC8cw2ykMQWLZBIYRIkf7EuXr4nUY1P0I2u5olhxss0KwMZCOJmyOapmS1BFQjEHKWnR8XSL6KjTbwLHwLkHaMcgMJ04fEE9SldfXT03itsZAzOemlWoHKyZCwyVVptThi0ZCOu2HlH1KOJrtLZByQZAHv2nmYX5iAT12guiLWes9KwHvznTgudqXmaKTXXSOZBog0rOhY7pLrSXbwxdZCS5",Long.parseLong("830415240907421"));
 
-            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 658658658, "John", "Doe", 22);
+            User user = userService.register("usuari", "usuari@hotmail.com", "123456", 722180817, "John", "Doe", 22);
             IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
             Tag tag = tagService.addTag("ATag", "Just a tag");
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
