@@ -46,6 +46,10 @@ public class Global {
 
     @Autowired
     private
+    ObjectiveService objectiveService;
+
+    @Autowired
+    private
     PostService postService;
 
     @Autowired
@@ -143,6 +147,9 @@ public class Global {
 
             postService.addPost(user.getId(), w1.getId(), "Morning run at the beach!", "");
             postService.addPost(user2.getId(), w3.getId(), "Testing my brand new bike!", "");
+
+            IdObject o1 = objectiveService.addObjective(1, 5.0, user.getId());
+            IdObject o2 = objectiveService.addObjective(2, 5000.0, user.getId());
         }
     }
 
