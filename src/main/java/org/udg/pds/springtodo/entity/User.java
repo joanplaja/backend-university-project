@@ -35,6 +35,7 @@ public class User implements Serializable {
         this.age = age;
         this.tasks = new ArrayList<>();
         this.workouts = new ArrayList<>();
+        this.objectives = new ArrayList<>();
         this.equipments = new ArrayList<>();
         this.following = new ArrayList<>();
         this.followers = new ArrayList<>();
@@ -51,6 +52,7 @@ public class User implements Serializable {
         this.age = age;
         this.tasks = new ArrayList<>();
         this.workouts = new ArrayList<>();
+        this.objectives = new ArrayList<>();
         this.following = new ArrayList<>();
         this.followers = new ArrayList<>();
         this.facebookToken = facebookToken;
@@ -97,6 +99,9 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Workout> workouts;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Objective> objectives;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Equipment> equipments;
@@ -209,6 +214,15 @@ public class User implements Serializable {
     }
 
     @JsonView(Views.Complete.class)
+    public Collection<Objective> getObjectives() {
+        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
+        // that you have to query the object (calling size(), for example) to get the list initialized
+        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+        objectives.size();
+        return objectives;
+    }
+
+    @JsonView(Views.Complete.class)
     public Collection<Equipment> getEquipments() {
         // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
         // that you have to query the object (calling size(), for example) to get the list initialized
@@ -228,6 +242,8 @@ public class User implements Serializable {
     public void addEquipment(Equipment equipment) {
         equipments.add(equipment);
     }
+
+    public void addObjective(Objective objective){ objectives.add(objective);}
 
     public void addFollower(User u) {
         followers.add(u);
