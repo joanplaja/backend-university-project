@@ -12,6 +12,7 @@ import org.udg.pds.springtodo.repository.ObjectiveRepository;
 import java.util.Collection;
 import java.util.Optional;
 
+@Service
 public class ObjectiveService {
 
     @Autowired
