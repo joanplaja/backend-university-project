@@ -16,6 +16,7 @@ import org.udg.pds.springtodo.service.UserService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -197,15 +198,21 @@ public class UserController extends BaseController {
     }
 
     @PostMapping(path="/findFacebookFriends")
+    @JsonView(Views.Public.class)
     public List<User> findFacebookFriends(HttpSession session, @Valid  @RequestBody FindFacebookFriends fFacebookFreinds) {
 
         Long loggedUserId = getLoggedUser(session);
-        String facebookIds ="";
-        for(int i = 0; i<fFacebookFreinds.facebookIds.length;i++){
-            if (i==0)facebookIds+=fFacebookFreinds.facebookIds[i];
-            else facebookIds+=","+fFacebookFreinds.facebookIds[i];
-        }
-        return userService.findFacebookFriends(loggedUserId, facebookIds);
+
+        return userService.findFacebookFriends(loggedUserId, fFacebookFreinds.facebookIds);
+
+    }
+
+    @PostMapping(path="/findPhoneFriends")
+    @JsonView(Views.Public.class)
+    public List<User> findPhoneFriends(HttpSession session, @Valid  @RequestBody FindPhoneFriends fPhoneFriends) {
+
+        Long loggedUserId = getLoggedUser(session);
+        return userService.findPhoneFriends(loggedUserId, fPhoneFriends.phoneNumbers);
 
     }
 
@@ -237,7 +244,13 @@ public class UserController extends BaseController {
 
     static class FindFacebookFriends {
         @NotNull
-        public String[] facebookIds;
+        public List<String> facebookIds;
+
+    }
+
+    static class FindPhoneFriends {
+        @NotNull
+        public List<String> phoneNumbers;
 
     }
 
