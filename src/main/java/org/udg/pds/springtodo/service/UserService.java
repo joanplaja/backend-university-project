@@ -243,4 +243,10 @@ public class UserService {
         return u.getId();
     }
 
+    public void changePrivacy(Long id){
+        User user = this.getUser(id);
+        user.changePrivacy();
+        userRepository.save(user);
+    }
+
 }

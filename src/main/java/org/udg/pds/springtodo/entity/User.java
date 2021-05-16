@@ -41,6 +41,7 @@ public class User implements Serializable {
         this.followers = new ArrayList<>();
         this.facebookToken = null;
         this.facebookId = null;
+        this.privacy = false;
     }
     public User(String username, String email,String password, Integer phoneNumber, String firstName, String lastName, Integer age,String facebookToken, Long facebookId) {
         this.username = username;
@@ -57,6 +58,7 @@ public class User implements Serializable {
         this.followers = new ArrayList<>();
         this.facebookToken = facebookToken;
         this.facebookId = facebookId;
+        this.privacy = false;
     }
 
     @Id
@@ -92,6 +94,8 @@ public class User implements Serializable {
     private  Long facebookId;
 
     private String facebookToken;
+
+    private Boolean privacy;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -157,6 +161,11 @@ public class User implements Serializable {
         return description;
     }
 
+    @JsonView(Views.Public.class)
+    public Boolean getPrivacy() {
+        return privacy;
+    }
+
   @JsonView(Views.Public.class)
   public void setDescription(String newDescription) { this.description = newDescription;  }
 
@@ -178,6 +187,8 @@ public class User implements Serializable {
     public Integer getAge() {
         return age;
     }
+
+
 
 
 
@@ -277,5 +288,12 @@ public class User implements Serializable {
     public Collection<User> getFollowing() {
         following.size();
         return following;
+    }
+
+    public void changePrivacy(){
+      if(privacy == true){
+          privacy = false;
+      }
+      else privacy = true;
     }
 }
