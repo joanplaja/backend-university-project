@@ -242,6 +242,15 @@ public class UserController extends BaseController {
         return userService.getFollowers(followersId);
     }
 
+    @GetMapping(path="/private")
+    @JsonView(Views.Public.class)
+    public String changePrivacy(HttpSession session) {
+
+        Long loggedUserId = getLoggedUser(session);
+        userService.changePrivacy(loggedUserId);
+        return BaseController.OK_MESSAGE;
+    }
+
     static class FindFacebookFriends {
         @NotNull
         public List<String> facebookIds;
