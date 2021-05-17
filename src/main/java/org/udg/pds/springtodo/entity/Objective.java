@@ -17,7 +17,7 @@ public class Objective implements Serializable {
 
     }
 
-    public Objective(int type, double goal){
+    public Objective(String type, double goal){
         this.type = type;
         this.goal = goal;
     }
@@ -29,7 +29,7 @@ public class Objective implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int type;
+    private String type;
 
     private double goal;
 
@@ -59,11 +59,11 @@ public class Objective implements Serializable {
     }
 
     @JsonView(Views.Public.class)
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 

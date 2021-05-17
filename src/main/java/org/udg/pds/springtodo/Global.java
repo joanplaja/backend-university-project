@@ -148,8 +148,9 @@ public class Global {
             postService.addPost(user.getId(), w1.getId(), "Morning run at the beach!", "");
             postService.addPost(user2.getId(), w3.getId(), "Testing my brand new bike!", "");
 
-            IdObject o1 = objectiveService.addObjective(1, 5.0, user.getId());
-            IdObject o2 = objectiveService.addObjective(2, 5000.0, user.getId());
+            IdObject o1 = objectiveService.addObjective("workouts", 5, user.getId());
+            IdObject o2 = objectiveService.addObjective("distance", 5000.0, user.getId());
+            IdObject o3 = objectiveService.addObjective("duration", 150.5, user.getId());
         }
     }
 

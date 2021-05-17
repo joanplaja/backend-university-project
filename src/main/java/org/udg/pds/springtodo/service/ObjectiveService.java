@@ -43,7 +43,7 @@ public class ObjectiveService {
     }
 
     @Transactional
-    public IdObject addObjective(int type, double goal, Long userId) {
+    public IdObject addObjective(String type, double goal, Long userId) {
         try {
             User user = userService.getUser(userId);
 
