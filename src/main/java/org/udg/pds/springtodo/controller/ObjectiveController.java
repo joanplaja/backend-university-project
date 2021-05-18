@@ -58,7 +58,7 @@ public class ObjectiveController extends BaseController{
     static class R_Objective {
 
         @NotNull
-        public int type;
+        public String type;
 
         @NotNull
         public double goal;
