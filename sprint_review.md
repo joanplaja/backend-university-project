@@ -1,4 +1,4 @@
-﻿# Punts sprint 1
+# Punts sprint 1
 ## Pau boix
 [P215A-103](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-103) Search user UI and API calls **40**
 [P215A-99](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-99)     Modify Rest controller to add new API calls **12**
@@ -89,3 +89,59 @@
 [P215A-37](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-37) Save data on database **19**
 ### total 82
 
+# Punts sprint 3
+
+## Pau boix
+[P215A-179](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-179) Ui modifications **4**
+[P215A-178](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-178) backend logic **2**
+[P215A-176](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-176) Add this functionality to all profiles **10**
+[P215A-157](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-157) Unfollow users from the list **4**
+[P215A-156](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-156) Create UI **25**
+[P215A-175](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-175) Display real images **9**
+[P215A-162](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-162) Change searching into fragments for better cohesion with the rest of the app **20**
+
+### total 74
+
+## Joan Oller
+[P215A-181](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-181) Create layout to add objecives **14**
+[P215A-182](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-182) Modify fragments and adapters to implement add objectives **9**
+[P215A-159](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-159) Decide how to define, represent and show objectives **3**
+[P215A-174](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-174) API rest logic **8**
+[P215A-180](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-180) Update objective type in the database to make it a string **2**
+[P215A-161](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-161) Create necessary fragments **10**
+[P215A-168](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-168) Create fragment and layout for add an objective **19**
+[P215A-144](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-144) Create database objectives **9**
+[P215A-142](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-142) Create objectives layout **14**
+[P215A-146](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-146) Adapt user profile with objectives **3**
+### total 91
+
+## Pau Viella Stub
+  
+[P215A-160](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-160) Feed Page to list all the Posts **26**
+[P215A-163](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-163) Change the fields and API of the point to store more information **7**
+[P215A-158](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-158) Post Button and Dialog to post the Workout **23**
+[P215A-154](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-154) Create a DELETE endpoint **8**
+[P215A-147](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-147) Create the entities, controllers and services needed to support Posts **16**
+[P215A-141](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-141) Structure the arquitecture and models **6**
+### total 86
+
+## Joan Plaja
+[P215A-173](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-173) frontend logic **11**
+[P215A-172](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-172) backend logic **8**
+[P215A-169](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-169) backend logic **14**
+[P215A-167](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-167) design layout and frontend logic **24**
+[P215A-152](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-152) Sign in with facebook backend **12**
+[P215A-151](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-151) Sign in with facebook (front-end) **28**
+[P215A-126](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-126) Make conversions from m/s (speed) to km/h when speed is high and the same with distance m to km **5**
+[P215A-150](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-150) Change search friends to fragment and construct the layout for adding friends from diferents sites (facebook, contacts, sugestios) **18**
+[P215A-171](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-171) Documentar crides api facebook i rutes aprop **1**
+[P215A-124](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-124) Decide Which complement data save with each point ( Lat , Lng), velocity, distance, etc.. **3**
+### total 124
+
+## David Caceres
+[P215A-137](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-137) Create database equipment **8**
+[P215A-136](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-136) Form create equipment and delete them **28**
+[P215A-138](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-138) Api rest logic **12**
+[P215A-135](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-135) Create Equipment UI **23**
+[P215A-164](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-164) Rest logic form and equipment images **7**
+### total 78
