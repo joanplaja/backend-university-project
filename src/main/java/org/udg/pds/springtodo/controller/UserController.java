@@ -108,7 +108,7 @@ public class UserController extends BaseController {
 
         userService.register(ru.username, ru.email, ru.password, ru.phoneNumber, ru.firstName, ru.lastName, ru.age);
 
-        LoginUser loginUser = new LoginUser(ru.username, ru.password);
+        LoginUser loginUser = new LoginUser(ru.username, ru.password, ru.deviceId);
         login(session, loginUser);
         return BaseController.OK_MESSAGE;
     }
@@ -274,9 +274,10 @@ public class UserController extends BaseController {
 
         public String deviceId;
 
-        public LoginUser(String Username, String Password){
+        public LoginUser(String Username, String Password, String deviceId){
             username = Username;
             password = Password;
+            this.deviceId = deviceId;
         }
     }
 
