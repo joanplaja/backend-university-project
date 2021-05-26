@@ -38,6 +38,7 @@ public class UserController extends BaseController {
 
         User u = userService.matchPassword(user.username, user.password);
         session.setAttribute("simpleapp_auth_id", u.getId());
+        userService.updateDeviceId(u, user.deviceId);
         return u;
     }
 
@@ -84,6 +85,7 @@ public class UserController extends BaseController {
 
         User u = userService.signInFacebook(ruFacebook.facebookId, ruFacebook.facebookToken);
         session.setAttribute("simpleapp_auth_id", u.getId());
+        userService.updateDeviceId(u, ruFacebook.deviceId);
         return u;
     }
 
@@ -93,7 +95,8 @@ public class UserController extends BaseController {
         checkNotLoggedIn(session);
         //check if user email exists if it does update the facebook token
         //Otherwhise create the new user with facebook token
-        userService.registerFacebook(ruFacebook.username, ruFacebook.email, ruFacebook.password, ruFacebook.phoneNumber, ruFacebook.firstName, ruFacebook.lastName, ruFacebook.age, ruFacebook.facebookToken, ruFacebook.facebookId);
+        User u = userService.registerFacebook(ruFacebook.username, ruFacebook.email, ruFacebook.password, ruFacebook.phoneNumber, ruFacebook.firstName, ruFacebook.lastName, ruFacebook.age, ruFacebook.facebookToken, ruFacebook.facebookId);
+        userService.updateDeviceId(u, ruFacebook.deviceId);
         return BaseController.OK_MESSAGE;
     }
 
@@ -269,6 +272,8 @@ public class UserController extends BaseController {
         @NotNull
         public String password;
 
+        public String deviceId;
+
         public LoginUser(String Username, String Password){
             username = Username;
             password = Password;
@@ -290,6 +295,8 @@ public class UserController extends BaseController {
         public String lastName;
         @NotNull
         public Integer age;
+
+        public String deviceId;
     }
 
     static class RegisterUserFacebook {
@@ -311,6 +318,8 @@ public class UserController extends BaseController {
         public Long facebookId;
         @NotNull
         public String facebookToken;
+
+        public String deviceId;
     }
 
     static class SignInUserFacebook {
@@ -318,6 +327,8 @@ public class UserController extends BaseController {
         public Long facebookId;
         @NotNull
         public String facebookToken;
+
+        public String deviceId;
     }
 
     //classe per a que spring sapiga com mapejar el user que li arriba al body

@@ -42,6 +42,10 @@ public class UserService {
         return userRepository;
     }
 
+    public void updateDeviceId(User u, String deviceId) {
+        u.setDeviceId(deviceId);
+        userRepository.save(u);
+    }
     public User matchPassword(String username, String password) {
 
         List<User> uc = userRepository.findByUsername(username);
