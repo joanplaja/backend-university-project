@@ -11,6 +11,7 @@ import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.entity.UserSpecificationsBuilder;
 import org.udg.pds.springtodo.entity.Views;
+import org.udg.pds.springtodo.service.NotificationsService;
 import org.udg.pds.springtodo.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,9 @@ public class UserController extends BaseController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    NotificationsService notificationsService;
 
     @PostMapping(path="/login")
     @JsonView(Views.Private.class)
@@ -140,10 +144,11 @@ public class UserController extends BaseController {
         return userService.getUserEquipment(loggedUserId);
     }
 
-    @GetMapping(path="/check")
-    public String checkLoggedIn(HttpSession session) {
+    @GetMapping(path="/check/{token}")
+    public String checkLoggedIn(HttpSession session, @PathVariable("token") String token) {
 
-        getLoggedUser(session);
+        Long userId = getLoggedUser(session);
+        notificationsService.updateFirebaseToken(userId, token);
 
         return BaseController.OK_MESSAGE;
     }
@@ -153,6 +158,11 @@ public class UserController extends BaseController {
 
         Long loggedUserId = getLoggedUser(session);
         userService.addFollowing(loggedUserId, followId);
+        User followed = userService.getUser(followId);
+        if(followed.getDeviceId() != null) {
+            notificationsService.sendFirebaseMessage(followed.getDeviceId());
+        }
+
         return BaseController.OK_MESSAGE;
 
     }
