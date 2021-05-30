@@ -24,18 +24,16 @@ public class NotificationsService {
     @Autowired
     UserService userService;
 
-    public void sendFirebaseMessage(String token) {
-
-        String registrationToken = token;
+    public void sendFirebaseMessage(String token, String username) {
 
         // Data of your message. Key/value pairs accessible from an Android client as follows:
         // instanceOfRemoteData.getData().get("firstName")
         Message message = Message.builder()
             .setNotification(Notification.builder()
-                .setTitle("Prova")
-                .setBody("Missatge de prova")
+                .setTitle("@" + username)
+                .setBody(" started following you!")
                 .build())
-            .setToken(registrationToken)
+            .setToken(token)
             .build();
 
         // Send the message with registration token and body to device.

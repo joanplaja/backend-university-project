@@ -157,10 +157,11 @@ public class UserController extends BaseController {
     public String Follow(HttpSession session, @PathVariable("id") Long followId) {
 
         Long loggedUserId = getLoggedUser(session);
+        User u = userService.getUser(loggedUserId);
         userService.addFollowing(loggedUserId, followId);
         User followed = userService.getUser(followId);
         if(followed.getDeviceId() != null) {
-            notificationsService.sendFirebaseMessage(followed.getDeviceId());
+            notificationsService.sendFirebaseMessage(followed.getDeviceId(), u.getUsername());
         }
 
         return BaseController.OK_MESSAGE;
