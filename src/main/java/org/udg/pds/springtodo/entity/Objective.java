@@ -14,7 +14,6 @@ public class Objective implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public Objective(){
-
     }
 
     public Objective(String type, double goal){
@@ -27,6 +26,7 @@ public class Objective implements Serializable {
     @Id
     // Don't forget to use the extra argument "strategy = GenerationType.IDENTITY" to get AUTO_INCREMENT
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String type;
@@ -49,7 +49,7 @@ public class Objective implements Serializable {
         this.id = id;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonIgnore
     public User getUser() {
         return user;
     }
