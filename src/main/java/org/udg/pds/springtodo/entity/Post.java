@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 
 @Entity
@@ -37,6 +38,9 @@ public class Post implements Serializable {
     @OneToOne
     private Workout workout;
 
+    @ManyToMany
+    private Collection<User> usersLiked;
+
     @JsonView(Views.Private.class)
     public Workout getWorkout() { return workout; }
 
@@ -58,4 +62,15 @@ public class Post implements Serializable {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public void addLike(User u){
+        usersLiked.add(u);
+    }
+
+    @JsonView(Views.Complete.class)
+    public Collection<User> getLikes() {
+        usersLiked.size();
+        return usersLiked;
+    }
+
 }

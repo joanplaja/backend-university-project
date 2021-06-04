@@ -121,6 +121,9 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "following")
     private Collection<User> followers;
 
+    @ManyToMany(mappedBy = "usersLiked")
+    private Collection <Post> likedPosts;
+
     @JsonView(Views.Public.class)
     public Long getId() {
         return id;
@@ -305,5 +308,9 @@ public class User implements Serializable {
           privacy = false;
       }
       else privacy = true;
+    }
+
+    public void addLike(Post p){
+      likedPosts.add(p);
     }
 }
