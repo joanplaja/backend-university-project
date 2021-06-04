@@ -68,6 +68,8 @@ public class User implements Serializable {
     @NotNull
     private String username;
 
+    private String deviceId;
+
     @NotNull
     private String email;
 
@@ -138,6 +140,14 @@ public class User implements Serializable {
     @JsonView(Views.Private.class)
     public String getEmail() {
         return email;
+    }
+
+    @JsonView(Views.Public.class)
+    public String getDeviceId() { return deviceId; }
+
+    @JsonView(Views.Public.class)
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     @JsonView(Views.Public.class)
