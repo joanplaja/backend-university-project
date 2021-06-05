@@ -68,6 +68,8 @@ public class User implements Serializable {
     @NotNull
     private String username;
 
+    private String deviceId;
+
     @NotNull
     private String email;
 
@@ -110,6 +112,9 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Equipment> equipments;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Participant> participants;
+
     @ManyToMany(/*fetch = FetchType.EAGER*/)
     @JoinTable(name = "relation",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -118,6 +123,9 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "following")
     private Collection<User> followers;
+
+    @ManyToMany(mappedBy = "usersLiked")
+    private Collection <Post> likedPosts;
 
     @JsonView(Views.Public.class)
     public Long getId() {
@@ -138,6 +146,14 @@ public class User implements Serializable {
     @JsonView(Views.Private.class)
     public String getEmail() {
         return email;
+    }
+
+    @JsonView(Views.Public.class)
+    public String getDeviceId() { return deviceId; }
+
+    @JsonView(Views.Public.class)
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     @JsonView(Views.Public.class)
@@ -242,6 +258,15 @@ public class User implements Serializable {
         return equipments;
     }
 
+    @JsonView(Views.Complete.class)
+    public Collection<Participant> getParticipants() {
+        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
+        // that you have to query the object (calling size(), for example) to get the list initialized
+        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+        participants.size();
+        return participants;
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -252,6 +277,10 @@ public class User implements Serializable {
 
     public void addEquipment(Equipment equipment) {
         equipments.add(equipment);
+    }
+
+    public void addParticipant(Participant participant) {
+        participants.add(participant);
     }
 
     public void addObjective(Objective objective){ objectives.add(objective);}
@@ -296,4 +325,10 @@ public class User implements Serializable {
       }
       else privacy = true;
     }
+
+    public void addLike(Post p){
+      likedPosts.add(p);
+    }
+
+    public void removeLike(Post p){likedPosts.remove(p);}
 }

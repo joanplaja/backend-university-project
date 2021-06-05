@@ -21,9 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
-import org.udg.pds.springtodo.entity.Tag;
-import org.udg.pds.springtodo.entity.Task;
-import org.udg.pds.springtodo.entity.User;
+import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.UserRepository;
 
 import javax.annotation.Nullable;
@@ -40,6 +38,11 @@ public class UserService {
 
     public UserRepository crud() {
         return userRepository;
+    }
+
+    public void updateDeviceId(User u, String deviceId) {
+        u.setDeviceId(deviceId);
+        userRepository.save(u);
     }
 
     public User matchPassword(String username, String password) {
@@ -241,6 +244,44 @@ public class UserService {
         List<User> uc = userRepository.findByUsername(username);
         User u = uc.get(0);
         return u.getId();
+    }
+
+    public List<User> filterUsersWithoutChat(List<User> users,Long actualUser){
+        try{
+            List<Long> usersIdsWithChat = new ArrayList<>();
+            User user = getUser(actualUser);
+            List<Participant> participants = (List<Participant>) user.getParticipants();
+            Iterator<Participant> iParticipants = participants.iterator();
+
+            //per cada participacio de l'usuari
+            while(iParticipants.hasNext()){
+                Participant p = iParticipants.next();
+                //recuparem el chat
+                Chat chat = p.getChat();
+                List<Participant> chatParticipants = (List<Participant>) chat.getParticipants();
+                Iterator<Participant> it = chatParticipants.iterator();
+                while(it.hasNext()){
+                    Participant p2 = it.next();
+                    if(p2.getUserId() != actualUser)usersIdsWithChat.add(p2.getUserId());
+                }
+            }
+
+            //filtrem els que ja tenen xat
+            List<User> resultat = new ArrayList<>();
+            Iterator<User> itUsers = users.iterator();
+
+            while (itUsers.hasNext()){
+                User u = itUsers.next();
+                if(!usersIdsWithChat.contains(u.getId()))resultat.add(u);
+            }
+
+            return resultat;
+
+
+        }
+        catch (Exception ex) {
+            throw new ServiceException(ex.getMessage());
+        }
     }
 
     public void changePrivacy(Long id){

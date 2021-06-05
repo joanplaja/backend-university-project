@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.checkerframework.checker.units.qual.C;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 

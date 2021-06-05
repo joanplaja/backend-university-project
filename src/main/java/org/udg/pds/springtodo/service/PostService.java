@@ -7,6 +7,7 @@ import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.PostRepository;
 import org.udg.pds.springtodo.repository.RouteRepository;
+import org.udg.pds.springtodo.repository.UserRepository;
 import org.udg.pds.springtodo.repository.WorkoutRepository;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class PostService {
 
     @Autowired
     WorkoutService workoutService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public PostRepository crud(){ return postRepository; }
 
@@ -74,6 +78,49 @@ public class PostService {
         return feed;
     }
 
+    public Post getPost(Long id) {
+        Optional<Post> uo = postRepository.findById(id);
+        if (uo.isPresent())
+            return uo.get();
+        else
+            throw new ServiceException(String.format("Post with id = % dos not exists", id));
+    }
+
+    @Transactional
+    public void likePost(Long userId, Long postId){
+        Post likedPost = this.getPost(postId);
+        User user = userService.getUser(userId);
+
+        user.addLike(likedPost);
+        likedPost.addLike(user);
+
+        userRepository.save(user);
+        postRepository.save(likedPost);
+    }
+
+    @Transactional
+    public void removeLike(Long userId, Long postId) {
+        try {
+            User user = userService.getUser(userId);
+
+            Post postRemoveLike = this.getPost(postId);
+
+            user.removeLike(postRemoveLike);
+
+            postRemoveLike.removeLike(user);
+
+            userRepository.save(user);
+            postRepository.save(postRemoveLike);
+        } catch (Exception ex) {
+            // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
+            // We catch the normal exception and then transform it in a ServiceException
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
+    public Collection<User> getLikes(Long postId){
+        return this.getPost(postId).getLikes();
+    }
 
 
 

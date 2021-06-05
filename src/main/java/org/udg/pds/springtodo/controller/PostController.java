@@ -51,6 +51,32 @@ public class PostController extends BaseController {
         return BaseController.OK_MESSAGE;
     }
 
+    @PostMapping(path="like/{id}")
+    public String likePost(HttpSession session,
+                           @PathVariable("id") Long postId) {
+        Long userId = getLoggedUser(session);
+        postService.likePost(userId,postId);
+        return BaseController.OK_MESSAGE;
+    }
+
+    @GetMapping(path="/likes/{id}")
+    @JsonView(Views.Public.class)
+    public Collection<User> getLikes(HttpSession session,
+                                     @PathVariable("id") Long postId){
+        getLoggedUser(session);
+        return postService.getLikes(postId);
+
+    }
+
+    @DeleteMapping(path="/removelike/{id}")
+    public String removeLike(HttpSession session, @PathVariable("id") Long removeLikeId) {
+
+        Long loggedUserId = getLoggedUser(session);
+        postService.removeLike(loggedUserId, removeLikeId);
+        return BaseController.OK_MESSAGE;
+
+    }
+
     static class R_Post {
         @NotNull
         public Long workoutId;

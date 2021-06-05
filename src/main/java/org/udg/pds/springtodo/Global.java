@@ -42,6 +42,10 @@ public class Global {
 
     @Autowired
     private
+    ChatService chatService;
+
+    @Autowired
+    private
     EquipmentService equipmentService;
 
     @Autowired
@@ -151,6 +155,8 @@ public class Global {
             IdObject o1 = objectiveService.addObjective("workouts", 5, user.getId());
             IdObject o2 = objectiveService.addObjective("distance", 5000.0, user.getId());
             IdObject o3 = objectiveService.addObjective("duration", 150.5, user.getId());
+
+            chatService.createOneToOneChat(Long.valueOf(1), Long.valueOf(3));
         }
     }
 

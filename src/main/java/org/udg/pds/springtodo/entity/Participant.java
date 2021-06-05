@@ -1,24 +1,23 @@
 package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
-public class Objective implements Serializable {
+public class Participant implements Serializable {
     /**
      * Default value included to remove warning. Remove or modify at will.
      **/
     private static final long serialVersionUID = 1L;
 
-    public Objective(){
-    }
-
-    public Objective(String type, double goal){
-        this.type = type;
-        this.goal = goal;
+    public Participant() {
+        this.messages = new ArrayList<>();
     }
 
     // This tells JAXB that this field can be used as ID
@@ -29,10 +28,6 @@ public class Objective implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    private String type;
-
-    private double goal;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user")
     private User user;
@@ -40,45 +35,48 @@ public class Objective implements Serializable {
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
 
-    @JsonView(Views.Public.class)
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_chat")
+    private Chat chat;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "fk_chat", insertable = false, updatable = false)
+    private Long chatId;
 
-    @JsonIgnore
-    public User getUser() {
-        return user;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "participant")
+    private Collection<Message> messages;
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    @JsonView(Views.Public.class)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     @JsonView(Views.Public.class)
-    public double getGoal() {
-        return goal;
+    @JsonProperty("participantId")
+    public Long getId() {
+        return id;
     }
 
-    public void setGoal(double goal) {
-        this.goal = goal;
+    @JsonView(Views.Public.class)
+    public User getUser() {
+        return user;
     }
 
     @JsonView(Views.Complete.class)
     public long getUserId() {
         return userId;
+    }
+
+    @JsonView(Views.Complete.class)
+    public Chat getChat() {
+        return chat;
+    }
+
+    @JsonView(Views.Complete.class)
+    public long getChatId() {
+        return chatId;
     }
 
 }
