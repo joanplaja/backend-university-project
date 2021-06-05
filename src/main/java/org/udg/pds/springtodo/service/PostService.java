@@ -98,6 +98,26 @@ public class PostService {
         postRepository.save(likedPost);
     }
 
+    @Transactional
+    public void removeLike(Long userId, Long postId) {
+        try {
+            User user = userService.getUser(userId);
+
+            Post postRemoveLike = this.getPost(postId);
+
+            user.removeLike(postRemoveLike);
+
+            postRemoveLike.removeLike(user);
+
+            userRepository.save(user);
+            postRepository.save(postRemoveLike);
+        } catch (Exception ex) {
+            // Very important: if you want that an exception reaches the EJB caller, you have to throw an ServiceException
+            // We catch the normal exception and then transform it in a ServiceException
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
     public Collection<User> getLikes(Long postId){
         return this.getPost(postId).getLikes();
     }

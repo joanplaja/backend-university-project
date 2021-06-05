@@ -313,4 +313,6 @@ public class User implements Serializable {
     public void addLike(Post p){
       likedPosts.add(p);
     }
+
+    public void removeLike(Post p){likedPosts.remove(p);}
 }

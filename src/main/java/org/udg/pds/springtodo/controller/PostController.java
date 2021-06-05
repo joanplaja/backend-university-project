@@ -68,6 +68,15 @@ public class PostController extends BaseController {
 
     }
 
+    @DeleteMapping(path="/removelike/{id}")
+    public String removeLike(HttpSession session, @PathVariable("id") Long removeLikeId) {
+
+        Long loggedUserId = getLoggedUser(session);
+        postService.removeLike(loggedUserId, removeLikeId);
+        return BaseController.OK_MESSAGE;
+
+    }
+
     static class R_Post {
         @NotNull
         public Long workoutId;
