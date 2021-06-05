@@ -122,8 +122,8 @@ public class Global {
             taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
                 add(tag.getId());
             }});
-            IdObject eq1 = equipmentService.addEquipment("Nike Platinum", "This shoes are so confortable and they are not expensive!", "http://localhost:8080/images/0cd2093b-b12e-47e3-a96a-965cd6ab4136.jpg", "https://www.nike.com/es/", user.getId());
-            IdObject eq2 = equipmentService.addEquipment("Bike Leaf Green", "I really recommend to buy that bike. After 3 years it looks like it's still new!", "http://localhost:8080/images/0cd2093b-b12e-47e3-a96a-965cd6ab4136.jpg", "https://www.mountainbike.es/", user.getId());
+            IdObject eq1 = equipmentService.addEquipment("Nike Platinum", "This shoes are so confortable and they are not expensive!", "http://localhost:8080/images/2b76cf45-e3f8-466b-8c7a-95772d00241a.jpg", "https://www.nike.com/es/", user.getId());
+            IdObject eq2 = equipmentService.addEquipment("Bike Leaf Green", "I really recommend to buy that bike. After 3 years it looks like it's still new!", "http://localhost:8080/images/0916b73e-7dc2-4a7b-9782-ae7dac396bdc.jpg", "https://www.mountainbike.es/", user.getId());
             User user2 = userService.register("user", "user@hotmail.com", "0000", 123456789, "Tom", "Doe", 26);
             IdObject w1 = workoutService.addWorkoutWithRoute("running", user.getId(), 10.0,10.0);
             IdObject w2 = workoutService.addWorkoutWithRoute("hiking", user.getId(), 20.0,20.0);
@@ -145,8 +145,8 @@ public class Global {
             pointService.addPoints(user2.getId(), w3.getId(), points3);
             pointService.addPoints(user2.getId(), w4.getId(), points4);
 
-            postService.addPost(user.getId(), w1.getId(), "Morning run at the beach!", "");
-            postService.addPost(user2.getId(), w3.getId(), "Testing my brand new bike!", "");
+            postService.addPost(user.getId(), w1.getId(), "Morning run at the mountain!", "http://localhost:8080/images/07dd933a-1320-4181-aa0d-d57e12b9804d.jpg");
+            postService.addPost(user2.getId(), w3.getId(), "Testing my brand new bike!", "http://localhost:8080/images/57044785-6105-42d4-b294-f052a7cba450.jpg");
 
             IdObject o1 = objectiveService.addObjective("workouts", 5, user.getId());
             IdObject o2 = objectiveService.addObjective("distance", 5000.0, user.getId());

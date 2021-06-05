@@ -44,7 +44,7 @@ public class PostController extends BaseController {
     }
 
     @DeleteMapping(path="/{id}")
-    public String deleteWorkout(HttpSession session,
+    public String deletePost(HttpSession session,
                                 @PathVariable("id") Long postId) {
         getLoggedUser(session);
         postService.deletePost(postId);
