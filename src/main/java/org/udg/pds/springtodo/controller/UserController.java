@@ -197,6 +197,27 @@ public class UserController extends BaseController {
 
 
 
+    @GetMapping(path="/searchUsersWithoutChat")
+    @JsonView(Views.Public.class)
+    public List<User> searchUsersWithoutChat(HttpSession session,@RequestParam(value = "search") String search) {
+
+        Long loggedUserId = getLoggedUser(session);
+
+        search = "username:" + search;
+
+        UserSpecificationsBuilder builder = new UserSpecificationsBuilder();
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+        Matcher matcher = pattern.matcher(search + ",");
+        while (matcher.find()) {
+            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+        }
+
+        Specification<User> spec = builder.build();
+        List<User> users = userService.findUser(spec);
+        System.out.println(users);
+        return userService.filterUsersWithoutChat(users,loggedUserId);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     @JsonView(Views.Public.class)
     public List<User> search(@RequestParam(value = "search") String search) {
