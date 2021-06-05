@@ -67,6 +67,8 @@ public class Post implements Serializable {
         usersLiked.add(u);
     }
 
+    public void removeLike(User u){usersLiked.remove(u);}
+
     @JsonView(Views.Complete.class)
     public Collection<User> getLikes() {
         usersLiked.size();
