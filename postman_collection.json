@@ -1,151 +1,16 @@
 {
 	"info": {
-		"_postman_id": "a26a7b10-d574-4519-8e10-5feb37928a8e",
-		"name": "TODOSpring",
+		"_postman_id": "71505e0b-9711-4932-bcc3-27296f69e672",
+		"name": "pds15a",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"123456\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/users/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"login"
-					]
-				},
-				"description": "POST /users/login"
-			},
-			"response": [
+			"name": "users",
+			"item": [
 				{
-					"name": "Login bad password",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"nope\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/users/login",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Set-Cookie",
-							"value": "JSESSIONID=7F8F072B06A8F8AC7FB3B9821822B33E; Path=/; HttpOnly"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:02:46 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:02:45.999+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Password does not match\",\n    \"path\": \"/users/login\"\n}"
-				},
-				{
-					"name": "Login username does not exists",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"nope\",\n\t\"password\": \"123456\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/users/login",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:03:37 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:03:37.962+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User does not exists\",\n    \"path\": \"/users/login\"\n}"
-				},
-				{
-					"name": "Login ok",
-					"originalRequest": {
+					"name": "Login",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
@@ -169,183 +34,171 @@
 								"users",
 								"login"
 							]
-						}
+						},
+						"description": "POST /users/login"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
+							"name": "Login ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"123456\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:04:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"username\": \"usuari\",\n    \"email\": \"usuari@hotmail.com\"\n}"
 						},
 						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
+							"name": "Login username does not exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"nope\",\n\t\"password\": \"123456\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:03:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:03:37.962+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User does not exists\",\n    \"path\": \"/users/login\"\n}"
 						},
 						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:04:19 GMT"
+							"name": "Login bad password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"nope\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=7F8F072B06A8F8AC7FB3B9821822B33E; Path=/; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:02:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:02:45.999+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Password does not match\",\n    \"path\": \"/users/login\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"username\": \"usuari\",\n    \"email\": \"usuari@hotmail.com\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Get own tasks",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
 					]
 				},
-				"description": "GET /tasks"
-			},
-			"response": [
 				{
-					"name": "GET tasks error: not authenticated",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "localhost:8080/tasks",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"tasks"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:29:37 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:29:37.456+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/tasks\"\n}"
-				},
-				{
-					"name": "GET tasks: return  collection with 1 task",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "localhost:8080/tasks",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"tasks"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:04:49 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"dateCreated\": \"2019-02-14T11:01:33\",\n        \"dateLimit\": \"2019-02-14T11:01:33\",\n        \"completed\": false,\n        \"text\": \"Una tasca\"\n    }\n]"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/users/logout",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "localhost:8080/users/logout",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"logout"
-					]
-				},
-				"description": "POST /users/logout"
-			},
-			"response": [
-				{
-					"name": "Logout error",
-					"originalRequest": {
+					"name": "Logout",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
@@ -369,115 +222,115 @@
 								"users",
 								"logout"
 							]
-						}
+						},
+						"description": "POST /users/logout"
 					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:28:55 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
-				},
-				{
-					"name": "Logout OK",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/users/logout",
-							"host": [
-								"localhost"
+							"name": "Logout OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/users/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+								}
 							],
-							"port": "8080",
-							"path": [
-								"users",
-								"logout"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
+							"cookie": [],
+							"body": "\"ok\""
 						},
 						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+							"name": "Logout error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/users/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"logout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:28:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/users/register",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/users/register",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"register"
 					]
 				},
-				"description": "POST /users/register"
-			},
-			"response": [
 				{
-					"name": "Register user error: email already exists",
-					"originalRequest": {
+					"name": "Register",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
@@ -489,7 +342,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+							"raw": "{\n\t\"firstName\": \"yo\",\n    \"lastName\": \"yo\",\n    \"age\":0,\n\t\"email\": \"yp@yo.com\",\n    \"phoneNumber\":722180817,\n    \"password\":12456,\n    \"username\":\"xdxd\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/users/register",
@@ -501,472 +354,117 @@
 								"users",
 								"register"
 							]
-						}
+						},
+						"description": "POST /users/register"
 					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:30:34 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
-				},
-				{
-					"name": "Register user ok",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/users/register",
-							"host": [
-								"localhost"
+							"name": "Register user error: email already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
 							],
-							"port": "8080",
-							"path": [
-								"users",
-								"register"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
 						},
 						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/users/login",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"yo\",\n\t\"password\": \"yo\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/users/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"login"
-					]
-				},
-				"description": "POST /users/login User: yo"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/tasks",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-09T04:40:51\",\n\t\"dateLimit\": \" 2019-01-11T04:40:51\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
-					]
-				},
-				"description": "POST /tasks"
-			},
-			"response": [
-				{
-					"name": "Create task id:2",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-09T04:40:51\",\n\t\"dateLimit\": \" 2019-01-11T04:40:51\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/tasks",
-							"host": [
-								"localhost"
+							"name": "Register user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+								}
 							],
-							"port": "8080",
-							"path": [
-								"tasks"
-							]
+							"cookie": [],
+							"body": "\"ok\""
 						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:31:12 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 2\n}"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/tasks",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
 					]
 				},
-				"description": "GET /tasks"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/tasks/3",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks/3",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks",
-						"3"
-					]
-				},
-				"description": "GET task with id == 3"
-			},
-			"response": [
 				{
-					"name": "GET task id:3 error: dos not exists",
-					"originalRequest": {
+					"name": "informacio d'un usuari",
+					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/tasks/3",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"tasks",
-								"3"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:32:03 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:32:03.523+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Task does not exists\",\n    \"path\": \"/tasks/3\"\n}"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/tasks/3",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/tasks/3",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks",
-						"3"
-					]
-				},
-				"description": "DELETE Task with id == 3"
-			},
-			"response": [
-				{
-					"name": "DELETE task id:3 error: task does not exists",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/tasks/3",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"tasks",
-								"3"
-							]
-						}
-					},
-					"status": "Internal Server Error",
-					"code": 500,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:32:42 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:32:42.742+0000\",\n    \"status\": 500,\n    \"error\": \"Internal Server Error\",\n    \"message\": \"No class org.udg.pds.springtodo.entity.Task entity with id 3 exists!\",\n    \"path\": \"/tasks/3\"\n}"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/tasks",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
-					]
-				},
-				"description": "GET all tasks from logged user"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/users/1",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "localhost:8080/users/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"1"
-					]
-				},
-				"description": "DELETE Try to delete another user (id ==1)"
-			},
-			"response": [
-				{
-					"name": "DELETE user id:1 error: cannot delete other users",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [],
 						"url": {
 							"raw": "localhost:8080/users/1",
 							"host": [
@@ -979,210 +477,729 @@
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:33:33 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"timestamp\": \"2019-02-14T10:33:33.795+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"You cannot delete other users!\",\n    \"path\": \"/users/1\"\n}"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/users/2",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/users/2",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"2"
-					]
-				},
-				"description": "DELETE user just registered (id == 2)"
-			},
-			"response": [
 				{
-					"name": "DELETE user id:2 ok",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+					"name": "Informacio usuari logejat",
+					"request": {
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/2",
+							"raw": "localhost:8080/users/me",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"2"
+								"me"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:34:06 GMT"
+					"response": []
+				},
+				{
+					"name": "Aconseguir Id usuari",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/id/usuari",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"id",
+								"usuari"
+							]
 						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
+					},
+					"response": []
+				},
+				{
+					"name": "Actualitzar usuari",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"description\": \"Lorem ipsium\",\r\n    \"phoneNumber\":722180817,\r\n    \"username\":\"xdxd\",\r\n    \"imageUrl\":\"www.google.com\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuari",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar device id (si logejat)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/check/tokenProvaDeviceId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"check",
+								"tokenProvaDeviceId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow usuari",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/follow/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"follow",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Llistar usuaris a qui segueix un usari ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/following/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"following",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Llistar seguidors d'un usuari",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/followers/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"followers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Following usuari loggejat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/following",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Followers usuari loggejat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/followers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuaris",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users?search=username:us",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "username:us"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deixar de seguir un usuari",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/unfollow/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"unfollow",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registre amb facebook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"yo\",\n    \"lastName\": \"yo\",\n    \"age\":0,\n\t\"email\": \"facebook@yo.com\",\n    \"facebookId\":1648124008534134,\n    \"phoneNumber\":722180816,\n    \"password\":12456,\n    \"username\":\"facebook\",\n    \"facebookToken\":\"fasdfasdfasfasf\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/registerFacebook",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"registerFacebook"
+							]
+						},
+						"description": "POST /users/register"
+					},
+					"response": [
+						{
+							"name": "Register user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "\"ok\""
+						},
+						{
+							"name": "Register user error: email already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Sigin / login amb facebook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"facebookId\":1648124008534134,\n    \"facebookToken\":\"EAADLlO4sHwMBADglL4DKr3SZAS9gEXXmoOXCCZBcaaLhp49fXrcZA4yXjtmP25c4KZBxkcOlFnZAMU1zPd7MRoI0eKe9FZBfpeTSXc5scDZARtTqfI0vO7H4omvSBgUylMDyVZCDo3fXjueVGHTaAEAwZCalHpprI6XHBKZB80CBRgX9ZBDaWbZBUZAP516hgYKXBwxSqzqCZABXR2Y1CnoDqWtV9gWYf9lju8iu5fXRwlKZBHKsosFP63J5onl\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/signInFacebook",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"signInFacebook"
+							]
+						},
+						"description": "POST /users/register"
+					},
+					"response": [
+						{
+							"name": "Register user error: email already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
+						},
+						{
+							"name": "Register user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "\"ok\""
+						}
+					]
+				},
+				{
+					"name": "Buscar candidats d'amics de facebook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"facebookIds\":[\"1\",\"2\"]\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/findFacebookFriends",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"findFacebookFriends"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar candidats d'amics amb telefons",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumbers\":[\"1\",\"2\"]\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/findPhoneFriends",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"findPhoneFriends"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Canviar privacitat usuari loggejat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/private",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"private"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "localhost:8080/tasks",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
-					]
-				},
-				"description": "GET tasks. User just deleted, so we get an error"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/users/login",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"123456\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/users/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"login"
-					]
-				},
-				"description": "POST Login as \"usuari\" again"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/tasks",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task B\",\n\t\"dateCreated\": \" 2019-01-10T04:40:51\",\n\t\"dateLimit\": \" 2019-01-12T04:40:51\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
-					]
-				},
-				"description": "POST Create new task for user \"usuari\""
-			},
-			"response": [
+			"name": "chats",
+			"item": [
 				{
-					"name": "CREATE task ok: id:3",
-					"originalRequest": {
+					"name": "Llistar chats",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/chats",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"chats"
+							]
+						},
+						"description": "GET /tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Enviar missatge a un chat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"hola\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/chats/3/messages",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"chats",
+								"3",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Llistar missatges chat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/chats/3/messages",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"chats",
+								"3",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Llistar candidats per crear nou chat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"search\":\"prim\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/searchUsersWithoutChat?search=username:us",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"searchUsersWithoutChat"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "username:us"
+								}
+							]
+						},
+						"description": "GET all tasks from logged user"
+					},
+					"response": []
+				},
+				{
+					"name": "Create chat",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
@@ -1194,70 +1211,183 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task B\",\n\t\"dateCreated\": \" 2019-01-10T04:40:51\",\n\t\"dateLimit\": \" 2019-01-12T04:40:51\"\n}"
+							"raw": "{\n\t\"userId\":2\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/tasks",
+							"raw": "localhost:8080/chats",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tasks"
+								"chats"
 							]
-						}
+						},
+						"description": "User id -> usuari amb el qual volem crear un chat"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:34:49 GMT"
+							"name": "Create task id:2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-09T04:40:51\",\n\t\"dateLimit\": \" 2019-01-11T04:40:51\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/tasks",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:31:12 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 3\n}"
+					]
 				}
 			]
 		},
 		{
-			"name": "localhost:8080/tasks",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/tasks",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks"
-					]
-				},
-				"description": "GET get all tasks for logged user"
-			},
-			"response": [
+			"name": "equipment",
+			"item": [
 				{
-					"name": "GET tasks ok: [id:1, id:3]",
-					"originalRequest": {
+					"name": "Afegir equipament",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"equipament\",\r\n    \"description\": \"lorem impsium lorem lorem lorem impsium\",\r\n    \"imageUrl\":\"www.googl.com/image.png\",\r\n    \"shopUrl\":\"www.google.com\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/equipment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Llistar equipament usuari",
+					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/equipment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar equipament",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/equipment/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipment",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "routes",
+			"item": [
+				{
+					"name": "Llistar rutes a prop",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": 1.01010,\r\n    \"longitude\": 2.14210,\r\n    \"limit\": 10 \r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/routes/near",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"routes",
+								"near"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "workouts",
+			"item": [
+				{
+					"name": "Crear workout",
+					"request": {
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -1268,466 +1398,391 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
+							"raw": "{\n\t\"type\": \"New task B\",\n\t\"route\":{\"initialLatitude\": 10.0001,\n\t\"initialLongitude\": 10.0001\n    }\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/tasks",
+							"raw": "localhost:8080/workouts",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tasks"
+								"workouts"
+							]
+						},
+						"description": "POST Create new task for user \"usuari\""
+					},
+					"response": [
+						{
+							"name": "CREATE task ok: id:3",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"text\": \"New task B\",\n\t\"dateCreated\": \" 2019-01-10T04:40:51\",\n\t\"dateLimit\": \" 2019-01-12T04:40:51\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/tasks",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 10:34:49 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Llistar workouts usuari",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/workouts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workouts"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:35:21 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"dateCreated\": \"2019-02-14T11:01:33\",\n        \"dateLimit\": \"2019-02-14T11:01:33\",\n        \"completed\": false,\n        \"text\": \"Una tasca\"\n    },\n    {\n        \"id\": 3,\n        \"dateCreated\": \"2019-01-10T04:40:51\",\n        \"dateLimit\": \"2019-01-12T04:40:51\",\n        \"completed\": false,\n        \"text\": \"New task B\"\n    }\n]"
-				}
-			]
-		},
-		{
-			"name": "localhost:8080/tasks/1/tags",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/tasks/1/tags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks",
-						"1",
-						"tags"
-					]
+					"response": []
 				},
-				"description": "GET tags for task id == 1"
-			},
-			"response": [
 				{
-					"name": "GET tags from task id:1 ok: returns [id:1]",
-					"originalRequest": {
+					"name": "Aconseguir un workout particular amb mes info",
+					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/workouts/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workouts",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Afegir punts lat/long/velocitat/... a un workout / ruta",
+					"request": {
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
+							"raw": "[[100.0,100.0,3.0,3.0,3.0],[100.0,100.0,3.0,3.0,3.0],[100.0,100.0,3.0,3.0,3.0]]\r\n"
 						},
 						"url": {
-							"raw": "localhost:8080/tasks/1/tags",
+							"raw": "localhost:8080/workouts/6/points",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tasks",
-								"1",
-								"tags"
+								"workouts",
+								"6",
+								"points"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:35:58 GMT"
+					"response": []
+				},
+				{
+					"name": "Eliminar workout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/workouts/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workouts",
+								"6"
+							]
 						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"ATag\",\n        \"description\": \"Just a tag\"\n    }\n]"
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "localhost:8080/tasks/3/tags",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/tasks/3/tags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks",
-						"3",
-						"tags"
-					]
-				},
-				"description": "GET get all tags for task id == 3"
-			},
-			"response": [
+			"name": "posts",
+			"item": [
 				{
-					"name": "GET tags from task id:3 ok: returns []",
-					"originalRequest": {
+					"name": "Llistar posts ",
+					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/posts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/posts/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Afegir un post",
+					"request": {
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
+							"raw": "{\r\n    \"workoutId\": 5,\r\n    \"description\": \"A day at the mountain with good company!\",\r\n    \"imageUrl\": \"\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/tasks/3/tags",
+							"raw": "localhost:8080/posts",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tasks",
-								"3",
-								"tags"
+								"posts"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:36:45 GMT"
+					"response": []
+				},
+				{
+					"name": "Like a post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/posts/like/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"like",
+								"3"
+							]
 						}
-					],
-					"cookie": [],
-					"body": "[]"
+					},
+					"response": []
+				},
+				{
+					"name": "Get likes of a post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/posts/likes/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"likes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Treure like publicacio",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/posts/removelike/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"removelike",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "localhost:8080/tags/1",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tags/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tags",
-						"1"
-					]
-				},
-				"description": "GET get tag with id == 1"
-			},
-			"response": [
+			"name": "objectives",
+			"item": [
 				{
-					"name": "GET tags id:1 ok",
-					"originalRequest": {
-						"method": "GET",
+					"name": "Afegir objectiu",
+					"request": {
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
+							"raw": "{\r\n    \"type\":\"dfasdfasdf\",\r\n    \"goal\":4.0\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/tags/1",
+							"raw": "localhost:8080/objectives",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tags",
-								"1"
+								"objectives"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:37:16 GMT"
+					"response": []
+				},
+				{
+					"name": "List objectius",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/objectives",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"objectives"
+							]
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"name\": \"ATag\",\n    \"description\": \"Just a tag\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar objectiu",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/objectives/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"objectives",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "localhost:8080/tags",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"TheTAG\",\n\t\"description\": \"whatever\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tags"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/tags",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"New task A\",\n\t\"dateCreated\": \" 2019-01-08T18:17:24\",\n\t\"dateLimit\": \" 2019-01-10T18:17:24\"\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/tags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tags"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/tasks/2/tags",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[1, 2]"
-				},
-				"url": {
-					"raw": "localhost:8080/tasks/2/tags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tasks",
-						"2",
-						"tags"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST image",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": []
+			"name": "notifications",
+			"item": [
+				{
+					"name": "Actualitzar token deviceId",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\":\"fasdfasdfasdf\"\r\n}"
 						},
-						{
-							"key": "hello",
-							"value": "hola",
-							"type": "text",
-							"disabled": true
+						"url": {
+							"raw": "localhost:8080/notifications/update-token",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notifications",
+								"update-token"
+							]
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/images",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"images"
-					]
-				},
-				"description": "Upload image"
-			},
-			"response": []
-		},
-		{
-			"name": "GET image",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/D:/Dropbox/personal/camisetas/cacodemon.jpg"
-						},
-						{
-							"key": "hello",
-							"value": "hola",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/images/0ba06406-7c6b-4667-a49a-f51e9905ee8c.jpg",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"images",
-						"0ba06406-7c6b-4667-a49a-f51e9905ee8c.jpg"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user profile",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/users/me",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"me"
-					]
-				}
-			},
-			"response": []
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
