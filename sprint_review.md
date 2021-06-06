@@ -145,3 +145,51 @@
 [P215A-135](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-135) Create Equipment UI **23**
 [P215A-164](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-164) Rest logic form and equipment images **7**
 ### total 78
+
+
+# Punts sprint 4
+
+## Pau boix
+[P215A-189](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-189) Show privacy state in my profile **3**
+[P215A-205](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-205) Fix FollowingFollowers  **4**
+[P215A-207](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-207) Change app name **3**
+[P215A-190](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-190) Create UI **8**
+[P215A-191](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-191) Spring layer **5**
+[P215A-206](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-206) Remove likes **10**
+
+### total  33
+
+## Joan Oller
+
+[P215A-187](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-187) Implement backend to delete an objective **1**
+[P215A-188](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-188) Create button and popup to delete an objective **29**
+
+### total 30
+
+## Pau Viella Stub
+[P215A-209](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-209)   
+[FIX] The token is not allways set **11**
+[P215A-196](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-196) Configuration, investigation and documentation of Firebase... **38**
+[P215A-197](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-197) Notify when someone follows someone **78**
+  
+### total 127
+
+## Joan Plaja
+
+[P215A-200](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-200) Chat frontend **71**
+[P215A-202](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-202) chat backend **39**
+[P215A-208](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-208) postman collection v2 totes crides **5**
+[P215A-198](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-198)    
+Fix error's on loading fragments again, fragment lifecy... **6**
+[P215A-204](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-204) Add documentation for chat backend api calls **1**
+[P215A-203](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-203) update sql tables documentation **1**
+
+### total  123
+
+## David Caceres
+
+[P215A-193](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-193) Aspectes UI **3**
+[P215A-194](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-194)   
+Publication Rest **4**
+[P215A-192](https://pds21-5a.myjetbrains.com/youtrack/issue/P215A-192) Delete or Edit publications junt amb PR 193 **28**
+### total  35
